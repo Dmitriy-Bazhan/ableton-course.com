@@ -31,6 +31,9 @@
 <script src="{{ asset('js/jquery-3.4.1.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('components/fontawesome-5.7.2/js/all.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/player.js') }}" type="text/javascript"></script>
+
+
 
 @section('header')
 

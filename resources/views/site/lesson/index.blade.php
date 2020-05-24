@@ -20,7 +20,6 @@
             <div class="col-lg-2 lesson_aside_menu">
 
 
-
                 @php($lessons = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
 
                 <ul class="navbar-nav">
@@ -46,7 +45,13 @@
 
                 <h3>Lesson 1</h3>
 
-                <img src=" {{ asset('img/speX-big.jpg') }}" style="width: 30%; margin: 10px; float: left;">
+                <div class="video_player">
+
+                    <div id="player">For player</div>
+
+                </div>
+
+                <img src=" {{ asset('img/ava/icons8-electronic-music-96.png') }}" style="width: 30%; margin: 10px; float: left;">
 
                 <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
@@ -64,5 +69,7 @@
         </div>
 
     </div>
+
+    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 
 @endsection

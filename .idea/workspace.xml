@@ -13,6 +13,13 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -124,15 +131,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Middleware" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img/ava" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img\ava" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\app\Http\Middleware" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components\fontawesome-5.7.2" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -158,7 +165,8 @@
       <workItem from="1590088031723" duration="6579000" />
       <workItem from="1590144978709" duration="16052000" />
       <workItem from="1590246684134" duration="11171000" />
-      <workItem from="1590304655867" duration="13552000" />
+      <workItem from="1590304655867" duration="14044000" />
+      <workItem from="1590326984560" duration="2822000" />
     </task>
     <servers />
   </component>
@@ -170,9 +178,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589994068240" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590304777490">
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590326986150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590304777490" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590326986150" />
   </component>
 </project>

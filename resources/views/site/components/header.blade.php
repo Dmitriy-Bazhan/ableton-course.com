@@ -2,9 +2,9 @@
 
     <a class="navbar-brand" @if($page_name != '/') href="{{ url_with_locale('/') }}" @endif>
 
-        <img class="micro_logo" src=" {{ asset('img/speX.jpg') }}">
+        <img class="micro_logo" src=" {{ asset('img/ava/icons8-electronic-music-96.png') }}">
 
-        <span class="header_site_name">Online School 2020</span>
+        <span class="header_site_name">Ableton Live tutorial course</span>
 
     </a>
 
