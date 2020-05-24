@@ -1,0 +1,53 @@
+#myTable{
+    background-color: lightgray;
+    border: black 2px solid;
+    margin: 10px;
+    width: 99%;
+    table-layout: fixed;
+}
+
+#id{
+    width: 5%;
+}
+#name{
+    width: 10%;
+}
+#alias{
+    width: 10%;
+}
+#location{
+    width: 7%;
+}
+#category{
+    width: 7%;
+}
+#short_description{
+    width: 19%;
+}
+#full_description{
+    width: 19%;
+}
+#created_at{
+    width: 10%;
+}
+#updated_at{
+    width: 10%;
+}
+#actions{
+    width: 10%;
+}
+#username{
+    width: 10%;
+}
+#email{
+    width: 20%;
+}
+#password{
+    width:10%;
+}
+#photo_profile{
+    width:20%;
+}
+#user_actions{
+    width: 15%;
+}
