@@ -16,8 +16,10 @@ class CreateUserDataTable extends Migration
         Schema::create('user_data', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('useful_lang', 5)->default('ru');
-            $table->string('username')->default('user');
+            $table->string('useful_lang', 5)->default('en');
+            $table->json('important_topic')->nullable();
+            $table->json('important_lessons')->nullable();
+            $table->json('important_links')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

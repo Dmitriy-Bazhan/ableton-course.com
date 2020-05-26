@@ -131,15 +131,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img/ava" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img\ava" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\app\Http\Middleware" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components\fontawesome-5.7.2" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components" />
     </key>
   </component>
   <component name="RunManager">
@@ -167,6 +167,9 @@
       <workItem from="1590246684134" duration="11171000" />
       <workItem from="1590304655867" duration="14044000" />
       <workItem from="1590326984560" duration="2822000" />
+      <workItem from="1590332665560" duration="13738000" />
+      <workItem from="1590426134236" duration="6063000" />
+      <workItem from="1590481958120" duration="25674000" />
     </task>
     <servers />
   </component>
@@ -174,13 +177,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590504632507">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590504632507" />
+    <state x="627" y="208" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590334370493">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="627" y="208" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590334370493" />
     <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589994068240">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589994068240" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590326986150">
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590481960153">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590326986150" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590481960153" />
   </component>
 </project>

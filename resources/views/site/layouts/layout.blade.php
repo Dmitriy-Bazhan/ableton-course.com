@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Online School</title>
+    <title>Ableton Live tutorial course</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/open-iconic-master/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -22,16 +22,18 @@
         }
     </style>
 
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-3.4.1.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('components/fontawesome-5.7.2/js/all.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/player.js') }}" type="text/javascript"></script>
+
 </head>
 
 <body>
 
-<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery-3.4.1.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('components/fontawesome-5.7.2/js/all.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/player.js') }}" type="text/javascript"></script>
+
 
 
 
@@ -57,27 +59,11 @@
 
 @show
 
-<section>
+<main>
 
-    <div class="container-fluid">
+    @yield('content')
 
-        <div class="row">
-
-            <main>
-
-                <div class="col-md-12 col-lg-12">
-
-                    @yield('content')
-
-                </div>
-
-            </main>
-
-        </div>
-
-    </div>
-
-</section>
+</main>
 
 <footer>
 

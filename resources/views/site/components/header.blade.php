@@ -121,35 +121,31 @@
 
                     @php($languages = ['en', 'ua', 'ru'])
 
-                @else
+                    @foreach($languages as $lang)
 
-                    @php($languages = [])
+                        @if ( app()->getLocale() == $lang )
+
+                            <li class="nav-item">
+
+                                <a class="nav-link active">{{ strtoupper($lang) }}</a>
+
+                            </li>
+
+                        @else
+
+                            <li class="nav-item">
+
+                                @php($prefix = $lang == 'en' ? '' : '/'. $lang)
+
+                                <a class="nav-link" href=" {{ url( $prefix . $path) }} ">{{ strtoupper($lang) }}</a>
+
+                            </li>
+
+                        @endif
+
+                    @endforeach
 
                 @endif
-
-                @foreach($languages as $lang)
-
-                    @if ( app()->getLocale() == $lang )
-
-                        <li class="nav-item">
-
-                            <a class="nav-link active">{{ strtoupper($lang) }}</a>
-
-                        </li>
-
-                    @else
-
-                        <li class="nav-item">
-
-                            @php($prefix = $lang == 'en' ? '' : '/'. $lang)
-
-                            <a class="nav-link" href=" {{ url( $prefix . $path) }} ">{{ strtoupper($lang) }}</a>
-
-                        </li>
-
-                    @endif
-
-                @endforeach
 
             </ul>
 

@@ -14,7 +14,25 @@ class CreateLessonDatasTable extends Migration
     public function up()
     {
         Schema::create('lesson_datas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('lesson_id')->unsigned();
+            $table->integer('category_id');
+            $table->string('lang', 5);
+            $table->string('name');
+            $table->string('meta_title', 255)->nullable();
+            $table->string('meta_description', 255)->nullable();
+            $table->string('meta_keywords', 255)->nullable();
+            $table->string('short_description', 255)->nullable();
+            $table->text('description')->nullable();
+            $table->string('video')->default('empty');
+            //надо как то субтитры решить
+            $table->text('text')->nullable();
+
+            $table->foreign('lesson_id')
+                ->references('id')
+                ->on('lessons')
+                ->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }

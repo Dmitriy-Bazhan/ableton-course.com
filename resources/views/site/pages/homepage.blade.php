@@ -4,7 +4,7 @@
 
     <div class="row justify-content-center">
 
-        <img class="homepage_title_logo" src=" {{ asset('img/ava/icons8-electronic-music-96.png') }}">
+        <img class="homepage_title_logo" src=" {{ asset('img/ava/icons8-electronic-music-100.png') }}">
 
     </div>
 
@@ -30,7 +30,7 @@
 
             <a href="#">
 
-            <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-96.png') }}">
+            <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
 
             <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
                 sit
@@ -48,7 +48,7 @@
 
             <a href="#">
 
-                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-96.png') }}">
+                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
 
                 <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
                 sit
@@ -66,7 +66,7 @@
 
             <a href="#">
 
-                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-96.png') }}">
+                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
 
                 <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
                 sit

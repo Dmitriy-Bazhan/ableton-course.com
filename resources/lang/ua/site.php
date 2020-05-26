@@ -33,8 +33,18 @@ return [
     'lesson' => [
         'name_page' => 'Уроки',
         'lesson' => 'Урок',
+        'description' => 'Опис',
+        'video_problem_1' => 'Відео тимчасово недоступно.',
+        'video_problem_2' => 'На сайті ведуться технічні роботи.',
+        'like' => 'Сподобалося :',
+        'not_like' => 'Не сподобалося :',
+        'views' => 'Переглянули : ',
+        'similar_lesson' => 'Схожі уроки',
     ],
     'user_profile' => [
         'name_page' => 'Профіль',
+    ],
+    'category' => [
+        'list_name' => 'Категорія',
     ],
 ];

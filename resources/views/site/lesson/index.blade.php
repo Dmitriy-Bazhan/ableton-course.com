@@ -2,12 +2,15 @@
 
 @section('content')
 
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-12">
+            <div class="col-12">
 
-            <h3>@lang('site.lesson.name_page')</h3>
+                <h3>@lang('site.lesson.name_page')</h3>
+
+            </div>
 
         </div>
 
@@ -17,21 +20,59 @@
 
         <div class="row">
 
-            <div class="col-lg-2 lesson_aside_menu">
+            <div class="col-lg-2 lesson_aside_menu" id="aside_menu"
+                 data-current-lesson="{{ $currentLesson->category_id }}">
 
+                <ul class="navbar-nav" id="category_list">
 
-                @php($lessons = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
-
-                <ul class="navbar-nav">
-
-                    @foreach($lessons as $lesson)
+                    @foreach($categories as $list_key => $category)
 
                         <li class="nav-item">
 
-                            <a class="nav-link text-white" href="#">
-                                <i class="fas fa-book-open"></i>
-                                @lang('site.lesson.lesson') {{ $lesson }}
+                            <a class="nav-link" style="color:#f5d3b3" id="category_list_category"
+                               data-list="{{ $list_key }}">
+                                <i class="fas fa-calculator"></i>
+                                {{ $category->data->name }}
                             </a>
+
+                            <div id="list_lessons_{{ $list_key }}" class="list_lessons" data-view="hide">
+
+                                <ul>
+                                    @foreach($category->lesson as $key => $lesson)
+
+                                        <li>
+
+                                            @if($lesson->id == $currentLesson->id)
+
+                                                <script>
+                                                    $('#list_lessons_{{ $list_key }}')
+                                                        .attr('data-current-lesson-show', {{ $currentLesson->category_id }} );
+                                                </script>
+
+                                                <a class="nav-link  disabled "
+                                                   href="#" style="color:#afdbf5">
+                                                    <i class="fas fa-book-open"></i>
+                                                    {{ $category->lesson_data[$key]->name }}
+                                                </a>
+
+                                            @else
+
+                                                <a class="nav-link"
+                                                   href="{{ url_with_locale('/lesson/' . $lesson->id) }}" style="color:#f5d3b3">
+                                                    <i class="fas fa-book-open"></i>
+                                                    {{ $category->lesson_data[$key]->name }}
+                                                </a>
+
+                                            @endif
+
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </div>
+
 
                         </li>
 
@@ -41,35 +82,10 @@
 
             </div>
 
-            <div class="col-lg-10">
-
-                <h3>Lesson 1</h3>
-
-                <div class="video_player">
-
-                    <div id="player">For player</div>
-
-                </div>
-
-                <img src=" {{ asset('img/ava/icons8-electronic-music-96.png') }}" style="width: 30%; margin: 10px; float: left;">
-
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean id ante id ipsum aliquam elementum et sit amet nunc.</span>
-
-            </div>
+            @include('site.lesson.lesson_content')
 
         </div>
 
     </div>
-
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 
 @endsection

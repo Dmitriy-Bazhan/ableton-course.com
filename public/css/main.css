@@ -23,9 +23,10 @@ footer {
     color: white;
 }
 
-h3 {
+h3, h4, h5 {
     color: honeydew;
 }
+
 
 .new_img {
     width: 30%;
@@ -52,19 +53,20 @@ h3 {
     margin: 10px;
 
 }
-.popular_span{
+
+.popular_span {
     font-size: 14pt;
     color: wheat;
 }
 
-.header_site_name{
+.header_site_name {
     color: #FFFFFF;
 }
-.lesson_aside_menu{
+
+.lesson_aside_menu {
     height: 500px;
     overflow-y: scroll;
 }
-
 
 /*Кастомизация скрола*/
 
@@ -73,15 +75,34 @@ h3 {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
-.video_player{
-    width: 50%;
+.video_player {
+    width: 100%;
+}
+
+.video_not_exists {
+    margin-left: 30%;
+    width: 90%;
+    margin-bottom: 37%;
+}
+
+.lesson_comments_menu {
+    border: solid 1px black;
+    box-shadow: 5px 5px;
+    margin-bottom: 25px;
+}
+
+.lesson_comments_menu_scroll {
+    width: 100%;
+    min-height: 50px;
+    max-height: 300px;
+    overflow-y: scroll;
 }

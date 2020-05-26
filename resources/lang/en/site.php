@@ -33,9 +33,19 @@ return [
     'lesson' => [
         'name_page' => 'Lessons',
         'lesson' => 'Lesson',
+        'description' => 'Description',
+        'video_problem_1' => 'Video is temporarily unavailable.',
+        'video_problem_2' => 'The site is undergoing technical work.',
+        'like' => 'Liked :',
+        'not_like' => 'Did not like :',
+        'views' => 'Viewed : ',
+        'similar_lesson' => 'Similar lessons',
     ],
     'user_profile' => [
         'name_page' => 'Profile',
+    ],
+    'category' => [
+        'list_name' => 'Category',
     ],
 
 ];
