@@ -50,10 +50,14 @@ class DatabaseSeeder extends Seeder
         $aliases = ['first', 'second', 'third', 'forth', 'fifth', 'KKKKK', 'LLLLL', 'QQQQQ', 'WWWWWW',
             'AAAAA', 'BBBBB', 'CCCCC', 'DDDDD', 'EEEEE', 'FFFFF', 'GGGGG', 'HHHHH', 'JJJJJ'];
 
-        $description = '';
-        for ($i = 0; $i < 25; $i++) {
-            $description = $description . 'description-';
+        $languages = ['en', 'ru', 'ua'];
+        foreach ($languages as $lang) {
+            $description[$lang] = '';
+            for ($i = 0; $i < 15; $i++) {
+                $description[$lang] = $description[$lang] . $lang . ' description ';
+            }
         }
+
 
         foreach ($aliases as $key => $alias) {
             $lesson = new Lesson();
@@ -78,7 +82,7 @@ class DatabaseSeeder extends Seeder
                 $lesson_data->meta_description = $lang . '_' . 'meta_description_' . $alias;
                 $lesson_data->meta_keywords = $lang . '_' . 'meta_keywords_' . $alias;
                 $lesson_data->short_description = $lang . '_' . 'short_description_' . $alias;
-                $lesson_data->description = $lang . '_' . $description . $alias;
+                $lesson_data->description = $lang . '_' . $description[$lang] . $alias;
                 $lesson_data->video = $lang . '_' . $alias . '_video';
                 $lesson_data->text = $lang . '_' . $alias . '_text';
                 $lesson_data->save();

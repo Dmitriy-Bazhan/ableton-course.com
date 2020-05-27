@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('role')->default(0); //0-user, 1-banned, 2-admin
+            $table->string('lang', 5)->default('en');
+            $table->integer('last_lesson')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

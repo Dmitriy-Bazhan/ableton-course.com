@@ -49,16 +49,24 @@
                                                         .attr('data-current-lesson-show', {{ $currentLesson->category_id }} );
                                                 </script>
 
-                                                <a class="nav-link  disabled "
-                                                   href="#" style="color:#afdbf5">
+
+                                                <a class="nav-link choose_your_lesson"
+                                                   data-id="{{ $lesson->id }}"
+                                                   data-token="{{ csrf_token() }}"
+
+                                                   style="color:#afdbf5">
                                                     <i class="fas fa-book-open"></i>
                                                     {{ $category->lesson_data[$key]->name }}
                                                 </a>
 
                                             @else
 
-                                                <a class="nav-link"
-                                                   href="{{ url_with_locale('/lesson/' . $lesson->id) }}" style="color:#f5d3b3">
+                                                <a class="nav-link choose_your_lesson"
+                                                   href=" {{ url_with_locale('/lesson?id=' . $lesson->id) }}"
+                                                   data-id="{{ $lesson->id }}"
+                                                   data-token="{{ csrf_token() }}"
+
+                                                   style="color:#f5d3b3">
                                                     <i class="fas fa-book-open"></i>
                                                     {{ $category->lesson_data[$key]->name }}
                                                 </a>
@@ -82,10 +90,16 @@
 
             </div>
 
-            @include('site.lesson.lesson_content')
+            <div class="col-lg-10" id="remove_block">
+
+                @include('site.lesson.lesson_content')
+
+            </div>
 
         </div>
 
     </div>
+
+    <script src="{{ asset('js/lesson_page.js') }}" type="text/javascript"></script>
 
 @endsection

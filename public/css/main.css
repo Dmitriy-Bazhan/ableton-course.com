@@ -106,3 +106,38 @@ h3, h4, h5 {
     max-height: 300px;
     overflow-y: scroll;
 }
+
+.button_copy_link {
+    text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+}
+
+.button_copy_link:hover {
+    -webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+}
+
+.lesson_link {
+    border-radius: 15px;
+    background-color: transparent;
+    color: #a8c1ff;
+    margin-left: 30%;
+}
+
+

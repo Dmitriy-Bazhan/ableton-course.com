@@ -4,7 +4,7 @@
 
     <div class="row justify-content-center">
 
-        <img class="homepage_title_logo" src=" {{ asset('img/ava/icons8-electronic-music-100.png') }}">
+        <img class="homepage_title_logo" src=" {{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
 
     </div>
 
