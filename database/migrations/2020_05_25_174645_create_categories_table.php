@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('alias');
             $table->string('tags')->default('');
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }

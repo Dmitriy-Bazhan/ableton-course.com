@@ -6,7 +6,7 @@
 
             <li class="nav-item">
 
-                <a class="nav-link text-white" href=" {{ route('admin/' . $key) }}">{{ $item }}</a>
+                <a class="nav-link text-white" href=" {{ url('admin/' . $key) }}">{{ $item }}</a>
 
             </li>
 

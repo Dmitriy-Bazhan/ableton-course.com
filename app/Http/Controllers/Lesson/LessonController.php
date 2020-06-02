@@ -33,7 +33,6 @@ class LessonController extends Controller
             ->where('id', '<>', $this->data['currentLesson']->id)
             ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
 
-
         $this->data['categories'] = Category::with('data')->with('lesson')->with('lesson_data')->get();
         return view('site.lesson.index', $this->data);
     }

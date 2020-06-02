@@ -10,7 +10,7 @@
 
 {{--    </div>--}}
 
-{{--    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>--}}
+{{--    <script src="{{ asset('js/script_en.js') }}" type="text/javascript"></script>--}}
 {{--    <script src="{{ asset('js/lesson_page.js') }}" type="text/javascript"></script>--}}
 
 @endsection

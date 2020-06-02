@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class About_usController extends Controller
 {
     public function index()
     {
         $this->AdminNecessarily();
-        $this->data['page'] = 'users';
-        return view('admin.users.users', $this->data);
+        $this->data['page'] = 'about_us';
+        return view('admin.about_us.about_us', $this->data);
     }
 
     /**

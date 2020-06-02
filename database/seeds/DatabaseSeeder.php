@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
                 $category_data = new \App\Category_data();
                 $category_data->category_id = $id;
                 $category_data->lang = $lang;
-                $category_data->name = $lang . '_' . 'name_' . $name;
+                $category_data->name = $name . 'name_in_' . $lang;
                 $category_data->description = $lang . '_' . 'description_' . $name;
                 $category_data->save();
             }
@@ -54,16 +54,15 @@ class DatabaseSeeder extends Seeder
         foreach ($languages as $lang) {
             $description[$lang] = '';
             for ($i = 0; $i < 15; $i++) {
-                $description[$lang] = $description[$lang] . $lang . ' description ';
+                $description[$lang] = $description[$lang] . $lang . '_description ';
             }
         }
-
 
         foreach ($aliases as $key => $alias) {
             $lesson = new Lesson();
             $lesson->alias = $alias;
             $lesson->category_id = rand(1, 5);
-            $lesson->tags = json_encode($aliases);
+            $lesson->tags = json_encode($languages);
             $lesson->image_big = $alias . '_big_image';
             $lesson->image_small = $alias . '_small_image';
             $lesson->save();
@@ -82,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 $lesson_data->meta_description = $lang . '_' . 'meta_description_' . $alias;
                 $lesson_data->meta_keywords = $lang . '_' . 'meta_keywords_' . $alias;
                 $lesson_data->short_description = $lang . '_' . 'short_description_' . $alias;
-                $lesson_data->description = $lang . '_' . $description[$lang] . $alias;
+                $lesson_data->description = $description[$lang];
                 $lesson_data->video = $lang . '_' . $alias . '_video';
                 $lesson_data->text = $lang . '_' . $alias . '_text';
                 $lesson_data->save();

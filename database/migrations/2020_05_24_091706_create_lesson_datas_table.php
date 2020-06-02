@@ -24,7 +24,7 @@ class CreateLessonDatasTable extends Migration
             $table->string('meta_keywords', 255)->nullable();
             $table->string('short_description', 255)->nullable();
             $table->text('description')->nullable();
-            $table->string('video')->default('empty');
+            $table->string('video')->default('empty')->nullable();
             //надо как то субтитры решить
             $table->text('text')->nullable();
 

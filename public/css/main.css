@@ -140,4 +140,64 @@ h3, h4, h5 {
     margin-left: 30%;
 }
 
+.login_tab {
+    background: #200122;
+    background: -webkit-linear-gradient(to bottom, #6f0000, #200122);
+    background: linear-gradient(#2e3a6a, #2f0b45);
+    border-radius: 0;
+    color: antiquewhite;
+    text-transform: uppercase;
+    padding: 0;
+    margin-right: 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    position: relative;
+}
 
+.input_in_admin {
+    font-size: 14pt;
+    background: transparent;
+    color: #dbcf61;
+    /*border:none;*/
+    border-top: white;
+    border-left: white;
+    border-right: white;
+}
+
+.select_input_in_admin, select_input_in_admin + selected{
+    font-size: 16pt;
+    background: transparent;
+    color: #3437db;
+}
+.control-label{
+    font-size: 14pt;
+    color: #2adbaf;
+    text-align: right;
+    float:left;
+    margin-right:15px;
+}
+
+.page-link{
+    background: #383d41;
+    border: white;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgba(53, 116, 125, 0.87);
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #383d41;
+}
+.admin_image_big{
+    width: 20%;
+}
+.admin_video_player{
+    margin-left: 10%;
+    margin-bottom: 2%;
+    width: 35%;
+}

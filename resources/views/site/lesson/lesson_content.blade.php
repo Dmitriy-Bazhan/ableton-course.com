@@ -1,14 +1,16 @@
 <h3>{{ $currentLesson->data->name }}</h3>
 
+@php($lang = app()->getLocale())
+
 <div class="row">
 
     <div class="col-lg-9">
 
-        @if(file_exists('storage/video/' . $currentLesson->data->video . '.mp4'))
+        @if(file_exists('storage/video/'. app()->getLocale() . '/'. $currentLesson->data->video))
 
             <div class="video_player">
 
-                <div id="player" data-file="{{ $currentLesson->data->video }}">For player</div>
+                <div id="player{{$lang}}" data-file="{{ $currentLesson->data->video }}" data-lang="{{ $lang . '/' }}">For player</div>
 
             </div>
 
@@ -79,7 +81,8 @@
         <span class="oi oi-pin"></span>
     </button>
 
-    <span id="copy_body" class="lesson_link">{{ 'http://ableton-course.com/lesson?id=' . $currentLesson->id }}</span>
+    @php($langLink = $lang != 'en' ? $lang . '/' : '')
+    <span id="copy_body" class="lesson_link">{{ 'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
     <button onclick="copyLink('#copy_body')"
             class="btn-primary button_copy_link">@lang('site.lesson.copy_link')</button>
 
@@ -116,7 +119,9 @@
 
 </div>
 
-<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/script_en.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/script_ru.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/script_ua.js') }}" type="text/javascript"></script>
 
 
 

@@ -119,7 +119,7 @@
 
                 @if($page_name != 'admin')
 
-                    @php($languages = ['en', 'ua', 'ru'])
+                    @php($languages = ['en', 'ru', 'ua'])
 
                     @foreach($languages as $lang)
 

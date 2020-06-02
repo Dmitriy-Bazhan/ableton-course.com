@@ -24,6 +24,21 @@ class Controller extends BaseController
         return $data;
     }
 
+    public function AdminNecessarily()
+    {
+        $this->data['viewport'] = self::viewport();
+        $this->data['adminList'] = [
+            'lessons' => 'Уроки',
+            'category' => 'Категории',
+            'forum' => 'Форум',
+            'blog' => 'Блог',
+            'contacts' => 'Контакты',
+            'about_us' => 'О нас',
+            'users' => 'Пользователи',
+        ];
+        $this->data['page_name'] = 'admin';
+    }
+
     public static function viewport()
     {
         $agent = new Agent();

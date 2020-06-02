@@ -17,6 +17,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -131,7 +132,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog.com" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -140,6 +142,13 @@
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\app\Http\Middleware" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components\fontawesome-5.7.2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\users" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\forum" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\contacts" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\blog" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\about_us" />
     </key>
   </component>
   <component name="RunManager">
@@ -170,7 +179,17 @@
       <workItem from="1590332665560" duration="13738000" />
       <workItem from="1590426134236" duration="6063000" />
       <workItem from="1590481958120" duration="39466000" />
-      <workItem from="1590604769198" duration="12021000" />
+      <workItem from="1590604769198" duration="12622000" />
+      <workItem from="1590655773733" duration="35230000" />
+      <workItem from="1590758627800" duration="1283000" />
+      <workItem from="1590779660591" duration="598000" />
+      <workItem from="1590780296719" duration="407000" />
+      <workItem from="1590848458669" duration="16830000" />
+      <workItem from="1590905655599" duration="7628000" />
+      <workItem from="1591021545883" duration="44000" />
+      <workItem from="1591021689055" duration="791000" />
+      <workItem from="1591090267305" duration="94000" />
+      <workItem from="1591103011545" duration="1200000" />
     </task>
     <servers />
   </component>
@@ -178,21 +197,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590504632507">
+    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590858884789">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590504632507" />
+    <state x="688" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590858884789" />
     <state x="627" y="208" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590334370493">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="627" y="208" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590334370493" />
-    <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590533815918">
+    <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590910026564">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590533815918" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590604788019">
+    <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590910026564" />
+    <state x="690" y="218" key="FileChooserDialogImpl" timestamp="1590779752698">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590604788019" />
+    <state x="690" y="218" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590779752698" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590905657755">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590905657755" />
   </component>
 </project>

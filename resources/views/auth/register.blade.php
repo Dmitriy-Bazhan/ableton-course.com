@@ -8,7 +8,7 @@
 
             <div class="col-md-8">
 
-                <div class="card">
+                <div class="card login_tab">
 
                     <div class="card-header">{{ __('Register') }}</div>
 

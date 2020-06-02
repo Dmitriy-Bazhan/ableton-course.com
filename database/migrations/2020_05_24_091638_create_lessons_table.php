@@ -22,8 +22,8 @@ class CreateLessonsTable extends Migration
             $table->integer('good_rang')->default(0);
             $table->integer('bad_rang')->default(0);
             $table->integer('views')->default(0);
-            $table->string('image_big');
-            $table->string('image_small');
+            $table->string('image_big')->nullable();
+            $table->string('image_small')->nullable();
             $table->timestamps();
         });
     }

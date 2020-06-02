@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Ableton Live tutorial course</title>
+
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/open-iconic-master/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -18,21 +19,27 @@
     <script src="{{ asset('components/fontawesome-5.7.2/js/all.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/player.js') }}" type="text/javascript"></script>
 
-    <style>
-        body {
-            position: relative;
-            min-height: 100%;
-            margin: 0;
-            background-image: url({{ asset('img/Background_fone.png') }});
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        button, button:hover, button:focus, button:active {
-            outline: none !important;
-            border: none !important;
-        }
-    </style>
+    @if($page_name != 'admin')
+        <style>
+            body {
+                position: relative;
+                min-height: 100%;
+                margin: 0;
+                background-image: url({{ asset('img/Background_fone.png') }});
+                background-attachment: fixed;
+                background-size: cover;
+            }
+        </style>
+    @else
+        <style>
+            body {
+                position: relative;
+                min-height: 100%;
+                margin: 0;
+                background-color: #212529;
+            }
+        </style>
+    @endif
 
 </head>
 

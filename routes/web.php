@@ -27,14 +27,21 @@ Route::group([
     'middleware' => ['auth', 'checkAccess']
 ],
     function () {
-        Route::get('/', 'Admin\AdminController@lessons');
-        Route::get('/lessons', 'Admin\AdminController@lessons')->name('admin/lessons');
-        Route::get('/forum', 'Admin\AdminController@forum')->name('admin/forum');
-        Route::get('/blog', 'Admin\AdminController@blog')->name('admin/blog');
-        Route::get('/contacts', 'Admin\AdminController@contacts')->name('admin/contacts');
-        Route::get('/about_us', 'Admin\AdminController@about_us')->name('admin/about_us');
-        Route::get('/users', 'Admin\AdminController@users')->name('admin/users');
-        Route::get('/category', 'Admin\AdminController@category')->name('admin/category');
+        Route::get('/', 'Admin\AdminController@index');
+
+        Route::resource('/lessons', 'Admin\LessonController');
+
+        Route::resource('/category', 'Admin\CategoryController');
+
+        Route::resource('/forum', 'Admin\ForumController');
+
+        Route::resource('/blog', 'Admin\BlogController');
+
+        Route::resource('/contacts', 'Admin\ContactsController');
+
+        Route::resource('/about_us', 'Admin\About_usController');
+
+        Route::resource('/users', 'Admin\UsersController');
     });
 
 
