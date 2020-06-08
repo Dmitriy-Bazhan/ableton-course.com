@@ -321,33 +321,27 @@
                             </div>
 
 
-                            <div style="border:solid 2px white;">
-                                <label class="col-lg-5 control-label">Видео</label>
-                                <div class="form-group">
-
-                                    @if(isset($lesson->all_data[$key]->video) && file_exists('storage/video/'. $lang .'/' . $lesson->all_data[$key]->video))
-                                        <div class="admin_video_player">
-
-                                            <div id="player{{$lang}}"
-                                                 data-file="{{ $lesson->all_data[$key]->video }}"
-                                                 data-lang="{{ $lang . '/' }}">For player
-                                            </div>
-
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="control-label">Ссылка на видео {{ strtoupper($lang) }} : </label>
+                                    </div>
+                                    @if(isset($lesson->all_data[$key]->video))
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control input_in_admin"
+                                                   name="video[{{ $lang }}]"
+                                                   value="{{ $lesson->all_data[$key]->video }}">
                                         </div>
                                     @else
-                                        <img class="admin_image_big"
-                                             src="{{ asset('/img/ava/icons8-electronic-music-100-1.png') }}">
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control input_in_admin"
+                                                   name="video[{{ $lang }}]">
+                                        </div>
                                     @endif
-                                    <div class="col-lg-12">
-                                        <input type="hidden"
-                                               value="{{ isset($lesson->all_data[$key]->video) ? $lesson->all_data[$key]->video : '' }}"
-                                               name="old_video[{{ $lang }}]">
-                                        <input type="file" class="form-control input_in_admin"
-                                               name="video[{{ $lang }}]"
-                                               value="{{ isset($lesson->all_data[$key]->video) ? $lesson->all_data[$key]->video : '' }}">
-                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
 
                     @endforeach

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\UserData;
 use App\Lesson;
 use App\Lesson_data;
 
@@ -24,6 +25,10 @@ class DatabaseSeeder extends Seeder
         $firstUser->save();
         $firstId = User::all()->last()->id;
         User::where('id', $firstId)->update(['id' => 1]);
+
+        $userdata = new UserData();
+        $userdata->user_id = 1;
+        $userdata->save();
 
         $names = ['first_category', 'second_category', 'third_category',
             'forth_category', 'fifth_category'];
@@ -82,7 +87,7 @@ class DatabaseSeeder extends Seeder
                 $lesson_data->meta_keywords = $lang . '_' . 'meta_keywords_' . $alias;
                 $lesson_data->short_description = $lang . '_' . 'short_description_' . $alias;
                 $lesson_data->description = $description[$lang];
-                $lesson_data->video = $lang . '_' . $alias . '_video';
+//                $lesson_data->video = $lang . '_' . $alias . '_video';
                 $lesson_data->text = $lang . '_' . $alias . '_text';
                 $lesson_data->save();
             }

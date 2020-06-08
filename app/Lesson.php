@@ -61,7 +61,7 @@ class Lesson extends Model
             $lesson_data->meta_keywords = $keywords;
             $lesson_data->short_description = $post['short_description'][$lang];
             $lesson_data->description = $post['description'][$lang];
-            $lesson_data->video = $post['old_video'][$lang];
+            $lesson_data->video = $post['video'][$lang];
             $lesson_data->text = $post['text'][$lang];
             $lesson_data->save();
         }

@@ -136,19 +136,19 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js\lessons" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\users" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\forum" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\contacts" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\blog" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img\ava" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\app\Http\Middleware" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components\fontawesome-5.7.2" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\users" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\forum" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\contacts" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\blog" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\about_us" />
     </key>
   </component>
   <component name="RunManager">
@@ -189,7 +189,11 @@
       <workItem from="1591021545883" duration="44000" />
       <workItem from="1591021689055" duration="791000" />
       <workItem from="1591090267305" duration="94000" />
-      <workItem from="1591103011545" duration="1200000" />
+      <workItem from="1591103011545" duration="2010000" />
+      <workItem from="1591170394705" duration="956000" />
+      <workItem from="1591194650621" duration="13384000" />
+      <workItem from="1591278345266" duration="10408000" />
+      <workItem from="1591597429671" duration="11575000" />
     </task>
     <servers />
   </component>
@@ -213,9 +217,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="218" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590779752698" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1590905657755">
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1591597429967">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590905657755" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591597429967" />
   </component>
 </project>

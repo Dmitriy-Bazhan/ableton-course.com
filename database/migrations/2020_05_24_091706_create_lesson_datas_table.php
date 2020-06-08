@@ -19,12 +19,15 @@ class CreateLessonDatasTable extends Migration
             $table->integer('category_id');
             $table->string('lang', 5);
             $table->string('name');
+            $table->integer('views')->default(0);
+            $table->integer('good_rang')->default(0);
+            $table->integer('bad_rang')->default(0);
             $table->string('meta_title', 255)->nullable();
             $table->string('meta_description', 255)->nullable();
             $table->string('meta_keywords', 255)->nullable();
             $table->string('short_description', 255)->nullable();
             $table->text('description')->nullable();
-            $table->string('video')->default('empty')->nullable();
+            $table->string('video')->nullable();
             //надо как то субтитры решить
             $table->text('text')->nullable();
 

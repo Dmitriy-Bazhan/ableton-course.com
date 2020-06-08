@@ -18,6 +18,8 @@ Route::group([
 
         Route::get('/lesson/{lessonId?}', 'Lesson\LessonController@index')->name('lesson');
         Route::post('/lesson_ajax', 'Lesson\LessonController@ajaxLesson');
+        Route::post('/lesson_push_like_ajax', 'Lesson\LessonController@lessonPushLikeAjax');
+        Route::post('/lesson_push_dislike_ajax', 'Lesson\LessonController@lessonPushDislikeAjax');
 
         Route::get('/user_profile', 'Site\ProfileController@index')->name('user_profile');
     });

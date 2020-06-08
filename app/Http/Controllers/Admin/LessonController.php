@@ -82,16 +82,6 @@ class LessonController extends Controller
             Lesson::where('id', $lesson_id)->update(['image_small' => $file->getClientOriginalName()]);
         }
 
-        $languages = ['en', 'ru', 'ua'];
-        foreach ($languages as $lang) {
-            if ($request->hasFile('video.' . $lang)) {
-                $file = $request->file('video.' . $lang);
-                $file->move('storage/video/' . $lang . '/', $lesson_id . '_' . $file->getClientOriginalName());
-                Lesson_data::where('lesson_id', $lesson_id)->where('lang', $lang)
-                    ->update(['video' => $lesson_id . '_' . $file->getClientOriginalName()]);
-            }
-        }
-
         return redirect('admin/lessons');
     }
 
@@ -165,18 +155,6 @@ class LessonController extends Controller
             $file = $request->file('imageSmall');
             $file->move('storage/image_small/', $file->getClientOriginalName());
             Lesson::where('id', $post['lesson_id'])->update(['image_small' => $file->getClientOriginalName()]);
-        }
-
-        $languages = ['en', 'ru', 'ua'];
-        foreach ($languages as $lang) {
-            if ($request->hasFile('video.' . $lang)) {
-                $f = Storage::disk();
-                $f->delete('public/video/'. $lang . '/' . $post['old_video'][$lang]);
-                $file = $request->file('video.' . $lang);
-                $file->move('storage/video/' .  $lang . '/', $post['lesson_id'] . '_' . $file->getClientOriginalName());
-                Lesson_data::where('lesson_id', $post['lesson_id'])->where('lang', $lang)
-                             ->update(['video' => $post['lesson_id'] . '_' . $file->getClientOriginalName()]);
-            }
         }
 
         return redirect('admin/lessons');

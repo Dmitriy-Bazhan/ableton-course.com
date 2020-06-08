@@ -19,9 +19,6 @@ class CreateLessonsTable extends Migration
             $table->integer('category_id')->default(0);
             $table->string('tags')->default('');
             $table->boolean('enabled')->default(true);
-            $table->integer('good_rang')->default(0);
-            $table->integer('bad_rang')->default(0);
-            $table->integer('views')->default(0);
             $table->string('image_big')->nullable();
             $table->string('image_small')->nullable();
             $table->timestamps();

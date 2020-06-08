@@ -6,11 +6,16 @@
 
     <div class="col-lg-9">
 
-        @if(file_exists('storage/video/'. app()->getLocale() . '/'. $currentLesson->data->video))
+        @if(isset($currentLesson->data->video) && !is_null($currentLesson->data->video))
 
             <div class="video_player">
 
-                <div id="player{{$lang}}" data-file="{{ $currentLesson->data->video }}" data-lang="{{ $lang . '/' }}">For player</div>
+                <iframe width="100%"
+                        height="655px"
+                        src="{{ str_replace('watch?v=','embed/',$currentLesson->data->video) }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
 
             </div>
 
@@ -61,28 +66,13 @@
 </div>
 <br>
 
-<div style="margin-left: 5%;">
+<div style="margin-left: 5%;" id="under_video_buttom">
 
-    <button class="btn-success button_copy_link" id="pushLike" data-id="{{$currentLesson->id}}"
-
-            title="@lang('site.lesson.push_like')"><span class="oi oi-thumb-up">
-        </span>&nbsp; {{ $currentLesson->good_rang }}
-    </button>
-
-    <button class="btn-danger button_copy_link" id="pushDislike" title="@lang('site.lesson.push_dislike')">
-        <span class="oi oi-thumb-down"></span>&nbsp; {{ $currentLesson->bad_rang }}
-    </button>
-
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.views')"><span
-            class="oi oi-eye"></span>&nbsp; {{ $currentLesson->views }}
-    </button>
-
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.favorite')">
-        <span class="oi oi-pin"></span>
-    </button>
+    @include('site.lesson.under_video_buttons')
 
     @php($langLink = $lang != 'en' ? $lang . '/' : '')
-    <span id="copy_body" class="lesson_link">{{ 'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
+    <span id="copy_body"
+          class="lesson_link">{{ 'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
     <button onclick="copyLink('#copy_body')"
             class="btn-primary button_copy_link">@lang('site.lesson.copy_link')</button>
 
@@ -117,11 +107,10 @@
 
     </div>
 
+
 </div>
 
-<script src="{{ asset('js/script_en.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/script_ru.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/script_ua.js') }}" type="text/javascript"></script>
+
 
 
 
