@@ -80,35 +80,29 @@
 
 <br>
 
-<div class="col-lg-9 lesson_comments_menu">
+{{--@if(Auth::check())--}}
 
-    <div class="lesson_comments_menu_scroll">
-
-        @php($lessons = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25])
-
-        <ul class="navbar-nav">
-
-            @foreach($lessons as $lesson)
-
-                <li class="nav-item">
-
-                    <a class="nav-link text-white" href="#">
-                        <i class="fas fa-book-open"></i>
-                        Комментарий Комментарий Комментарий Комментарий
-                        Комментарий
-                        номер :{{ $lesson }}
-                    </a>
-
-                </li>
-
-            @endforeach
-
-        </ul>
-
+    <div id="app">
+        <chatbox-component comments='@json($comments)'></chatbox-component>
     </div>
 
 
-</div>
+{{--@else--}}
+
+
+
+{{--@endif--}}
+
+<script>
+    (function(){
+        var data = "<chatbox-component comments='@json($comments)'></chatbox-component>";
+        $('#app').html(data);
+    }());
+
+</script>
+
+
+
 
 
 

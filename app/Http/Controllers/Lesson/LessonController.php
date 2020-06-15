@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lesson;
 
 use App\Category;
 use App\Lesson;
+use App\Lesson_comment;
 use App\Lesson_data;
 use App\User;
 use App\UserData;
@@ -38,14 +39,19 @@ class LessonController extends Controller
             ->where('id', '<>', $data['currentLesson']->id)
             ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
         $data['categories'] = Category::with('data')->with('lesson')->with('lesson_data')->get();
+        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->get()->toArray();
 
-
+        session()->put('currentLesson', $data['currentLesson']->id);
         return view('site.lesson.index', $data);
     }
 
     public function ajaxLesson(Request $request)
     {
         $lessonId = $request->post('id');
+
+        if (Auth::check()) {
+            User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
+        }
 
         $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->where('enabled', true)->first();
 
@@ -55,7 +61,9 @@ class LessonController extends Controller
 
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
+        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->get()->toArray();
 
+        session()->put('currentLesson', $data['currentLesson']->id);
         return response()->json([
             'response' => view('site.lesson.lesson_content', $data)->render()
         ], 200);
@@ -153,6 +161,8 @@ class LessonController extends Controller
 
     private function userPushLike($lessonId)
     {
+        $data['userPushLike'] = null;
+
         if (Auth::check()) {
             $data['user'] = User::where('id', Auth::id())->with('data')->first();
             if (!is_null($data['user']->data->push_like)) {
@@ -173,6 +183,8 @@ class LessonController extends Controller
 
     private function userPushDislike($lessonId)
     {
+        $data['userPushDislike'] = null;
+
         if (Auth::check()) {
             $data['user'] = User::where('id', Auth::id())->with('data')->first();
             if (!is_null($data['user']->data->push_dislike)) {

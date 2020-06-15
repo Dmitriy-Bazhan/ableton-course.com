@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAccess;
 
+Route::post('/api/message', 'ChatController@index');
+
 Route::group([
     'prefix' => get_prefix(),
 ],
@@ -46,8 +48,6 @@ Route::group([
         Route::resource('/users', 'Admin\UsersController');
     });
 
-
-
 //Авторизация и регистрация
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
 Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');
@@ -57,5 +57,7 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\LoginController@getLogout');
 Route::post('auth/logout', 'Auth\LoginController@getLogout');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Auth::routes();
 

@@ -120,6 +120,8 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
   <component name="ProjectId" id="1c4dWBbdfgZsCNiMWp9UT8QIzHj" />
@@ -132,23 +134,24 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog.com" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test.com" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js\lessons" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\users" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\forum" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\contacts" />
-      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\blog" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img\ava" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\img" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\app\Http\Middleware" />
       <recent name="C:\Users\Zver\Downloads\OSPanel\domains\onlineschool.com.loc\public\components\fontawesome-5.7.2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\public\js\lessons" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\users" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\forum" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\contacts" />
+      <recent name="C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\views\admin\blog" />
     </key>
   </component>
   <component name="RunManager">
@@ -194,6 +197,16 @@
       <workItem from="1591194650621" duration="13384000" />
       <workItem from="1591278345266" duration="10408000" />
       <workItem from="1591597429671" duration="11575000" />
+      <workItem from="1591726196007" duration="20000" />
+      <workItem from="1591730082383" duration="167000" />
+      <workItem from="1591730286130" duration="35000" />
+      <workItem from="1591730803421" duration="74000" />
+      <workItem from="1591732052467" duration="157000" />
+      <workItem from="1591736575767" duration="63000" />
+      <workItem from="1591736846664" duration="17000" />
+      <workItem from="1591736925141" duration="80000" />
+      <workItem from="1592036795514" duration="12642000" />
+      <workItem from="1592123975517" duration="12144000" />
     </task>
     <servers />
   </component>
@@ -213,13 +226,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="627" y="218" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590910026564" />
-    <state x="690" y="218" key="FileChooserDialogImpl" timestamp="1590779752698">
+    <state x="690" y="218" key="FileChooserDialogImpl" timestamp="1591726214085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="218" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590779752698" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1591597429967">
+    <state x="690" y="218" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591726214085" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1592124267029">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591597429967" />
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592124267029" />
   </component>
 </project>
