@@ -39,7 +39,7 @@ class LessonController extends Controller
             ->where('id', '<>', $data['currentLesson']->id)
             ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
         $data['categories'] = Category::with('data')->with('lesson')->with('lesson_data')->get();
-        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->get()->toArray();
+        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->orderBy('created_at','desc')->get()->toArray();
 
         session()->put('currentLesson', $data['currentLesson']->id);
         return view('site.lesson.index', $data);
@@ -52,18 +52,16 @@ class LessonController extends Controller
         if (Auth::check()) {
             User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
         }
-
         $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->where('enabled', true)->first();
-
         $data['similarLessons'] = Lesson::where('category_id', $data['currentLesson']->category_id)
             ->where('id', '<>', $data['currentLesson']->id)
             ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
-
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->get()->toArray();
+        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->orderBy('created_at','desc')->get()->toArray();
 
         session()->put('currentLesson', $data['currentLesson']->id);
+
         return response()->json([
             'response' => view('site.lesson.lesson_content', $data)->render()
         ], 200);

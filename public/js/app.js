@@ -1954,12 +1954,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comments'],
   mounted: function mounted() {
     var arr = JSON.parse(this.comments);
     arr.forEach(function callback(element, index, arr) {
-      var insert = '<div class="message"><span class="d-inline-block nav-link text-white">' + element['body'] + '</span></div>';
+      var insert = '<div class="message"><span class="d-inline-block nav-link text-white">' + element['created_at'] + ' : ' + element['body'] + '</span></div>';
       $('.messages').append(insert);
     });
   },
@@ -1991,8 +1997,7 @@ __webpack_require__.r(__webpack_exports__);
       this.textMessage = '';
     }
   }
-}); // var block = document.getElementById("block");
-// block.scrollTop = block.scrollHeight;
+});
 
 /***/ }),
 
@@ -43598,24 +43603,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "chatbox p-3" }, [
     _c("div", { staticClass: "col-lg-9 lesson_comments_menu" }, [
-      _c("div", { staticClass: "lesson_comments_menu_scroll" }, [
-        _vm.messages.length
-          ? _c(
-              "div",
-              { staticClass: "messages" },
-              _vm._l(_vm.messages, function(message) {
-                return _c("div", { staticClass: "message" }, [
-                  _c(
-                    "span",
-                    { staticClass: "d-inline-block nav-link text-white" },
-                    [_vm._v(_vm._s(message))]
-                  )
-                ])
-              }),
-              0
-            )
-          : _vm._e()
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "lesson_comments_menu_scroll",
+          attrs: { id: "block_comments" }
+        },
+        [
+          _vm.messages.length
+            ? _c(
+                "div",
+                { staticClass: "messages" },
+                _vm._l(_vm.messages, function(message) {
+                  return _c("div", { staticClass: "message" }, [
+                    _c(
+                      "span",
+                      { staticClass: "d-inline-block nav-link text-white" },
+                      [_vm._v(_vm._s(message))]
+                    )
+                  ])
+                }),
+                0
+              )
+            : _vm._e()
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-5" }, [

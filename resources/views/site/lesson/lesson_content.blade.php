@@ -80,26 +80,40 @@
 
 <br>
 
-{{--@if(Auth::check())--}}
+@if(Auth::check())
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 
     <div id="app">
         <chatbox-component comments='@json($comments)'></chatbox-component>
     </div>
 
+@else
 
-{{--@else--}}
+    <div class="col-lg-9 lesson_comments_menu">
 
+        <div class="lesson_comments_menu_scroll" id="block_comments">
 
+            @foreach($comments as $comment)
 
-{{--@endif--}}
+                <span class="d-inline-block nav-link text-white">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span><br>
+
+            @endforeach
+
+        </div>
+
+    </div>
+
+@endif
 
 <script>
-    (function(){
-        var data = "<chatbox-component comments='@json($comments)'></chatbox-component>";
-        $('#app').html(data);
-    }());
-
+    var block = document.getElementById('block_comments');
+    console.log(block);
+    block.scrollTop = block.scrollHeight;
 </script>
+
+
 
 
 

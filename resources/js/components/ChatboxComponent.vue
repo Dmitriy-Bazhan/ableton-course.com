@@ -4,7 +4,7 @@
 
         <div class="col-lg-9 lesson_comments_menu">
 
-            <div class="lesson_comments_menu_scroll">
+            <div class="lesson_comments_menu_scroll" id="block_comments">
 
                 <div class="messages" v-if="messages.length">
 
@@ -42,6 +42,12 @@
 
     </div>
 
+<!--    <script>-->
+<!--        var block = document.getElementById('block_comments');-->
+<!--        console.log(block);-->
+<!--        block.scrollTop = block.scrollHeight;-->
+<!--    </script>-->
+
 </template>
 
 <script>
@@ -50,7 +56,7 @@
         mounted() {
             var arr = JSON.parse(this.comments);
             arr.forEach(function callback(element, index, arr) {
-                var insert = '<div class="message"><span class="d-inline-block nav-link text-white">' + element['body'] + '</span></div>';
+                var insert = '<div class="message"><span class="d-inline-block nav-link text-white">' + element['created_at'] + ' : ' + element['body'] + '</span></div>';
                 $('.messages').append(insert);
             });
         },
@@ -77,10 +83,7 @@
             sendMessage() {
                 axios.post('/api/message', {message: this.textMessage});
                 this.textMessage = '';
-            }
+            },
         }
     }
-
-    // var block = document.getElementById("block");
-    // block.scrollTop = block.scrollHeight;
 </script>
