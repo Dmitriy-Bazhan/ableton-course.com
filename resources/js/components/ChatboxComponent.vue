@@ -67,8 +67,8 @@
             }
         },
         created() {
-            let date = new Date();
-            this.addMessage(' ');
+            // let date = new Date();
+            // this.addMessage(' ');
             Echo.channel('chatbox')
                 .listen('MessageSend', (e) => {
                     this.addMessage(e.message);

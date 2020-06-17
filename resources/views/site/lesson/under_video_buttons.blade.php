@@ -1,4 +1,5 @@
 @if(Auth::user())
+
     <button class="btn-success button_copy_link" id="pushLike"
             data-user-push="{{ $userPushLike }}"
             data-id="{{$currentLesson->id}}"
@@ -44,8 +45,14 @@
         <span class="oi oi-pin"></span>
     </button>
 
-
 @endif
+
+@php($langLink = app()->getLocale() != 'en' ? app()->getLocale() . '/' : '')
+
+<span id="copy_body"
+      class="lesson_link">{{ 'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
+<button onclick="copyLink('#copy_body')"
+        class="btn-primary button_copy_link">@lang('site.lesson.copy_link')</button>
 
 <script src="{{ asset('js/lessons/button.js') }}" type="text/javascript"></script>
 

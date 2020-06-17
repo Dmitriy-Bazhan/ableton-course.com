@@ -1,7 +1,5 @@
 <h3>{{ $currentLesson->data->name }}</h3>
 
-@php($lang = app()->getLocale())
-
 <div class="row">
 
     <div class="col-lg-9">
@@ -28,7 +26,6 @@
                 <h4>@lang('site.lesson.video_problem_1')</h4>
                 <h4>@lang('site.lesson.video_problem_2')</h4>
 
-
             </div>
 
         @endif
@@ -42,7 +39,6 @@
         <p class="new_span">{{ $currentLesson->data->description }}</p>
 
         <hr>
-
 
         <h3>@lang('site.lesson.similar_lesson')</h3>
 
@@ -64,17 +60,12 @@
     </div>
 
 </div>
+
 <br>
 
 <div style="margin-left: 5%;" id="under_video_buttom">
 
     @include('site.lesson.under_video_buttons')
-
-    @php($langLink = $lang != 'en' ? $lang . '/' : '')
-    <span id="copy_body"
-          class="lesson_link">{{ 'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
-    <button onclick="copyLink('#copy_body')"
-            class="btn-primary button_copy_link">@lang('site.lesson.copy_link')</button>
 
 </div>
 
@@ -97,7 +88,9 @@
 
             @foreach($comments as $comment)
 
-                <span class="d-inline-block nav-link text-white">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span><br>
+                <span
+                    class="d-inline-block nav-link text-white">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span>
+                <br>
 
             @endforeach
 
@@ -109,7 +102,6 @@
 
 <script>
     var block = document.getElementById('block_comments');
-    console.log(block);
     block.scrollTop = block.scrollHeight;
 </script>
 

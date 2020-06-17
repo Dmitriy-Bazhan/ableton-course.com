@@ -30,18 +30,14 @@ class LessonController extends Controller
             $lessonId = Lesson::orderBy('id')->select('id')->first()->id;
         }
 
-
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
-
-        $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->first();
-        $data['similarLessons'] = Lesson::where('category_id', $data['currentLesson']->category_id)
-            ->where('id', '<>', $data['currentLesson']->id)
-            ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
-        $data['categories'] = Category::with('data')->with('lesson')->with('lesson_data')->get();
-        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->orderBy('created_at','desc')->get()->toArray();
-
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
+        $data['categories'] = Category::categories();
+        $data['comments'] = Lesson_comment::comments($lessonId);
         session()->put('currentLesson', $data['currentLesson']->id);
+
         return view('site.lesson.index', $data);
     }
 
@@ -52,14 +48,12 @@ class LessonController extends Controller
         if (Auth::check()) {
             User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
         }
-        $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->where('enabled', true)->first();
-        $data['similarLessons'] = Lesson::where('category_id', $data['currentLesson']->category_id)
-            ->where('id', '<>', $data['currentLesson']->id)
-            ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
+
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['comments'] = Lesson_comment::where('lesson_datas_id', $lessonId)->orderBy('created_at','desc')->get()->toArray();
-
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
+        $data['comments'] = Lesson_comment::comments($lessonId);
         session()->put('currentLesson', $data['currentLesson']->id);
 
         return response()->json([
@@ -71,22 +65,24 @@ class LessonController extends Controller
     {
         $lessonId = $request->post('id');
         $push = $request->post('push');
+        $lang = app()->getLocale();
+        $userId = Auth::id();
 
         if ($push == 0) {
-            $data['user_data'] = UserData::where('user_id', Auth::id())->first();
-            $temp = isset($data['user_data']->push_like) ? json_decode($data['user_data']->push_like, true) : null;
-            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
-            $temp[app()->getLocale()] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
-            UserData::where('user_id', Auth::id())->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->select('good_rang')->first()->good_rang;
+            $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
+            $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
+            $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
+            UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
+            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('good_rang')->first()->good_rang;
             $goodRang++;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->update(['good_rang' => $goodRang]);
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['good_rang' => $goodRang]);
 
         } elseif ($push == 1) {
 
-            $data['user_data'] = UserData::where('user_id', Auth::id())->first();
-            $temp = isset($data['user_data']->push_like) ? json_decode($data['user_data']->push_like, true) : null;
-            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+            $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
+            $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $arr = explode(',', $string);
 
             foreach ($arr as $key => $item) {
@@ -96,11 +92,11 @@ class LessonController extends Controller
             }
             $string = implode(',', $arr);
 
-            $temp[app()->getLocale()] = $string;
-            UserData::where('user_id', Auth::id())->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->select('good_rang')->first()->good_rang;
+            $temp[$lang] = $string;
+            UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
+            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('good_rang')->first()->good_rang;
             $goodRang--;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->update(['good_rang' => $goodRang]);
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['good_rang' => $goodRang]);
         }
 
         $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->first();
@@ -116,22 +112,24 @@ class LessonController extends Controller
     {
         $lessonId = $request->post('id');
         $push = $request->post('push');
+        $lang = app()->getLocale();
+        $userId = Auth::id();
 
         if ($push == 0) {
-            $data['user_data'] = UserData::where('user_id', Auth::id())->first();
-            $temp = isset($data['user_data']->push_dislike) ? json_decode($data['user_data']->push_dislike, true) : null;
-            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
-            $temp[app()->getLocale()] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
-            UserData::where('user_id', Auth::id())->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->select('bad_rang')->first()->bad_rang;
+            $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
+            $temp = isset($user_data->push_dislike) ? json_decode($user_data->push_dislike, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
+            $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
+            UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
+            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('bad_rang')->first()->bad_rang;
             $badRang++;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->update(['bad_rang' => $badRang]);
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['bad_rang' => $badRang]);
 
         } elseif ($push == 1) {
 
-            $data['user_data'] = UserData::where('user_id', Auth::id())->first();
-            $temp = isset($data['user_data']->push_dislike) ? json_decode($data['user_data']->push_dislike, true) : null;
-            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+            $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
+            $temp = isset($user_data->push_dislike) ? json_decode($user_data->push_dislike, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $arr = explode(',', $string);
 
             foreach ($arr as $key => $item) {
@@ -141,11 +139,11 @@ class LessonController extends Controller
             }
             $string = implode(',', $arr);
 
-            $temp[app()->getLocale()] = $string;
-            UserData::where('user_id', Auth::id())->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->select('bad_rang')->first()->bad_rang;
+            $temp[$lang] = $string;
+            UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
+            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('bad_rang')->first()->bad_rang;
             $badRang--;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->update(['bad_rang' => $badRang]);
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['bad_rang' => $badRang]);
         }
 
         $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->first();
@@ -159,45 +157,39 @@ class LessonController extends Controller
 
     private function userPushLike($lessonId)
     {
-        $data['userPushLike'] = null;
-
+        $userPushLike = null;
         if (Auth::check()) {
-            $data['user'] = User::where('id', Auth::id())->with('data')->first();
-            if (!is_null($data['user']->data->push_like)) {
-                $temp = json_decode($data['user']->data->push_like, true);
+            $userData = UserData::where('user_id', Auth::id())->select('push_like')->first();
+            if (!is_null($userData->push_like)) {
+                $temp = json_decode($userData->push_like, true);
                 $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
                 $arr = explode(',', $string);
             }
-
             if (!empty($string) && in_array($lessonId, $arr)) {
-                $data['userPushLike'] = '1';
+                $userPushLike = '1';
             } else {
-                $data['userPushLike'] = '0';
+                $userPushLike = '0';
             }
         }
-
-        return $data['userPushLike'];
+        return $userPushLike;
     }
 
     private function userPushDislike($lessonId)
     {
-        $data['userPushDislike'] = null;
-
+        $userPushDislike = null;
         if (Auth::check()) {
-            $data['user'] = User::where('id', Auth::id())->with('data')->first();
-            if (!is_null($data['user']->data->push_dislike)) {
-                $temp = json_decode($data['user']->data->push_dislike, true);
+            $userData = UserData::where('user_id', Auth::id())->select('push_dislike')->first();
+            if (!is_null($userData->push_dislike)) {
+                $temp = json_decode($userData->push_dislike, true);
                 $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
                 $arr = explode(',', $string);
             }
-
             if (!empty($string) && in_array($lessonId, $arr)) {
-                $data['userPushDislike'] = '1';
+                $userPushDislike = '1';
             } else {
-                $data['userPushDislike'] = '0';
+                $userPushDislike = '0';
             }
         }
-
-        return $data['userPushDislike'];
+        return $userPushDislike;
     }
 }

@@ -58,4 +58,9 @@ class Category extends Model
 
         return;
     }
+
+    public static function categories()
+    {
+        return self::with('data')->with('lesson')->with('lesson_data')->get();
+    }
 }
