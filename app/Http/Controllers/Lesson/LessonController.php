@@ -99,7 +99,7 @@ class LessonController extends Controller
             Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['good_rang' => $goodRang]);
         }
 
-        $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->first();
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
 
@@ -146,7 +146,7 @@ class LessonController extends Controller
             Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['bad_rang' => $badRang]);
         }
 
-        $data['currentLesson'] = Lesson::where('id', $lessonId)->with('data')->first();
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
 

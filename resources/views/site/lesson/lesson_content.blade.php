@@ -88,9 +88,15 @@
 
             @foreach($comments as $comment)
 
+                <div class="message_div">
+
                 <span
-                    class="d-inline-block nav-link text-white">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span>
+                    class="d-inline-block nav-link span_message">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span>
+
+                </div>
+
                 <br>
+
 
             @endforeach
 
