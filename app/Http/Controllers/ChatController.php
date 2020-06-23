@@ -15,6 +15,10 @@ class ChatController extends Controller
         if (strlen($message)) {
             $comment = new Lesson_comment();
             $comment->author = Auth::id();
+
+            $user = \App\User::find($comment->author)->name;
+            $message = ' ' . $user . ': ' . $message;
+
             $comment->good_rang = 0;
             $comment->bad_rang = 0;
             $comment->body = $message;

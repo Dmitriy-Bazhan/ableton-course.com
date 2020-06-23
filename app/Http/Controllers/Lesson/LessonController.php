@@ -25,9 +25,9 @@ class LessonController extends Controller
                 User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
             }
         } elseif (Auth::check()) {
-            $lessonId = User::where('id', Auth::id())->select('last_lesson')->first()->last_lesson;
+            $lessonId = User::where('id', Auth::id())->select('last_lesson')->firstOrFail()->last_lesson;
         } else {
-            $lessonId = Lesson::orderBy('id')->select('id')->first()->id;
+            $lessonId = Lesson::orderBy('id')->select('id')->firstOrFail()->id;
         }
 
         $data['userPushLike'] = $this->userPushLike($lessonId);
@@ -74,9 +74,8 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('good_rang')->first()->good_rang;
-            $goodRang++;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['good_rang' => $goodRang]);
+            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
+            $goodRang->increment('good_rang');
 
         } elseif ($push == 1) {
 
@@ -94,9 +93,8 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('good_rang')->first()->good_rang;
-            $goodRang--;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['good_rang' => $goodRang]);
+            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
+            $goodRang->decrement('good_rang');
         }
 
         $data['currentLesson'] = Lesson::currentLesson($lessonId);;
@@ -121,9 +119,8 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('bad_rang')->first()->bad_rang;
-            $badRang++;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['bad_rang' => $badRang]);
+            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
+            $badRang->increment('bad_rang');
 
         } elseif ($push == 1) {
 
@@ -141,9 +138,8 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->select('bad_rang')->first()->bad_rang;
-            $badRang--;
-            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->update(['bad_rang' => $badRang]);
+            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
+            $badRang->decrement('bad_rang');
         }
 
         $data['currentLesson'] = Lesson::currentLesson($lessonId);;

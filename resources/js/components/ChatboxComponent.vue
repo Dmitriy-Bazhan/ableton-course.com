@@ -2,35 +2,11 @@
 
     <div class="chatbox p-3">
 
-        <div class="col-lg-9 lesson_comments_menu">
-
-            <div class="lesson_comments_menu_scroll" id="block_comments">
-
-                <div class="messages" v-if="messages.length">
-
-                    <div class="message" v-for="message in messages">
-
-                        <div class="message_div1">
-
-                            <span class="span_message_vue">{{ message }}</span>
-
-                        </div>
-
-                        <br>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
         <div class="row mt-5">
 
             <div class="col-10">
 
-                <textarea class="textarea_in_vue" rows="3" v-model="textMessage"></textarea>
+                <textarea class="textarea_in_vue" rows="3" maxlength="500" v-model="textMessage"></textarea>
 
             </div>
 
@@ -46,21 +22,35 @@
 
         </div>
 
+        <br>
+
+        <div class="col-lg-9 lesson_comments_menu">
+
+            <div class="lesson_comments_menu_scroll">
+
+                <span id="block_comments"></span>
+
+                <div class="messages">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
 
 </template>
 
 <script>
 
-    // var block = document.getElementById('block_comments');
-    // block.scrollTop = block.scrollHeight;
-
     export default {
         props: ['comments'],
         mounted() {
             var arr = JSON.parse(this.comments);
             arr.forEach(function callback(element, index, arr) {
-                var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' : ' + element['body'] + '</span></div><br></div>';
+                var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' ' + element['body'] + '</span></div><br></div>';
                 $('.messages').append(insert);
             });
         },
@@ -79,10 +69,11 @@
                 });
         },
         methods: {
-            addMessage(message) {
+            addMessage(message,user) {
                 let date = new Date();
-                let timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-                this.messages.push(timestamp + ' ' + message);
+                let timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+                var putVar = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + timestamp + message + '</span></div><br></div>';
+                $('#block_comments').after(putVar);
             },
             sendMessage() {
                 axios.post('/api/message', {message: this.textMessage});
@@ -100,13 +91,15 @@
         border-radius: 30px;
         background: #6d6a80;
     }
+
     .span_message_vue {
         color: #ecc699;
         width: 95%;
         word-break: break-all;
         font-size: 15pt;
     }
-    .textarea_in_vue{
+
+    .textarea_in_vue {
         resize: none;
         width: 91%;
         background: #6d6a80;

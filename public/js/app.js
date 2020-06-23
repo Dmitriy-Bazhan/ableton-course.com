@@ -1953,21 +1953,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-// var block = document.getElementById('block_comments');
-// block.scrollTop = block.scrollHeight;
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comments'],
   mounted: function mounted() {
     var arr = JSON.parse(this.comments);
     arr.forEach(function callback(element, index, arr) {
-      var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' : ' + element['body'] + '</span></div><br></div>';
+      var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' ' + element['body'] + '</span></div><br></div>';
       $('.messages').append(insert);
     });
   },
@@ -1987,10 +1978,11 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    addMessage: function addMessage(message) {
+    addMessage: function addMessage(message, user) {
       var date = new Date();
-      var timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      this.messages.push(timestamp + ' ' + message);
+      var timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+      var putVar = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + timestamp + message + '</span></div><br></div>';
+      $('#block_comments').after(putVar);
     },
     sendMessage: function sendMessage() {
       axios.post('/api/message', {
@@ -6478,7 +6470,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.message_div1 {\n    width: 100%;\n    border: solid 2px #6d6a80;\n    padding: 15px;\n    border-radius: 30px;\n    background: #6d6a80;\n}\n.span_message_vue {\n    color: #ecc699;\n    width: 95%;\n    word-break: break-all;\n    font-size: 15pt;\n}\n.textarea_in_vue{\n    resize: none;\n    width: 91%;\n    background: #6d6a80;\n    outline: none;\n    font-size: 15pt;\n    color: #ecc699;\n    padding: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.message_div1 {\n    width: 100%;\n    border: solid 2px #6d6a80;\n    padding: 15px;\n    border-radius: 30px;\n    background: #6d6a80;\n}\n.span_message_vue {\n    color: #ecc699;\n    width: 95%;\n    word-break: break-all;\n    font-size: 15pt;\n}\n.textarea_in_vue {\n    resize: none;\n    width: 91%;\n    background: #6d6a80;\n    outline: none;\n    font-size: 15pt;\n    color: #ecc699;\n    padding: 15px;\n}\n", ""]);
 
 // exports
 
@@ -44249,36 +44241,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "chatbox p-3" }, [
-    _c("div", { staticClass: "col-lg-9 lesson_comments_menu" }, [
-      _c(
-        "div",
-        {
-          staticClass: "lesson_comments_menu_scroll",
-          attrs: { id: "block_comments" }
-        },
-        [
-          _vm.messages.length
-            ? _c(
-                "div",
-                { staticClass: "messages" },
-                _vm._l(_vm.messages, function(message) {
-                  return _c("div", { staticClass: "message" }, [
-                    _c("div", { staticClass: "message_div1" }, [
-                      _c("span", { staticClass: "span_message_vue" }, [
-                        _vm._v(_vm._s(message))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("br")
-                  ])
-                }),
-                0
-              )
-            : _vm._e()
-        ]
-      )
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-10" }, [
         _c("textarea", {
@@ -44291,7 +44253,7 @@ var render = function() {
             }
           ],
           staticClass: "textarea_in_vue",
-          attrs: { rows: "3" },
+          attrs: { rows: "3", maxlength: "500" },
           domProps: { value: _vm.textMessage },
           on: {
             input: function($event) {
@@ -44320,10 +44282,27 @@ var render = function() {
           [_vm._v("Send")]
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-9 lesson_comments_menu" }, [
+      _c("div", { staticClass: "lesson_comments_menu_scroll" }, [
+        _c("span", { attrs: { id: "block_comments" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "messages" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
