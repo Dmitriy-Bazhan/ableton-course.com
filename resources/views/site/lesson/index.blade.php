@@ -100,6 +100,6 @@
 
     </div>
 
-    <script src="{{ asset('js/lesson_page.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/lessons/lesson_page.js') }}" type="text/javascript"></script>
 
 @endsection

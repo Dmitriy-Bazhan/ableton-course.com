@@ -34,7 +34,7 @@ class Lesson extends Model
         $lesson->id = !is_null($lessonId) ? $lessonId : Lesson::orderBy('id', 'desc')->first()->id + 1;
         $lesson->alias = !is_null($lessonId) ? $post['alias'] : Str::slug($post['name']['en'], '-');
         $lesson->category_id = $post['category_id'];
-        $lesson->tags = json_encode(explode(',' ,$post['tags']));
+        $lesson->tags = json_encode(explode(',', $post['tags']));
         $lesson->image_big = $post['old_image_big'];
         $lesson->image_small = $post['old_image_small'];
         $lesson->save();
@@ -53,19 +53,32 @@ class Lesson extends Model
             $lesson_data->name = $post['name'][$lang];
             $lesson_data->meta_title = $post['name'][$lang];
             $lesson_data->meta_description = $post['description'][$lang];
-            $keywords = mb_substr($post['name'][$lang], 0 , mb_strpos($post['name'][$lang], ' '));
-            if(!$keywords)
-            {
+            $keywords = mb_substr($post['name'][$lang], 0, mb_strpos($post['name'][$lang], ' '));
+            if (!$keywords) {
                 $keywords = $post['name'][$lang];
             }
             $lesson_data->meta_keywords = $keywords;
             $lesson_data->short_description = $post['short_description'][$lang];
             $lesson_data->description = $post['description'][$lang];
-            $lesson_data->video = $post['old_video'][$lang];
+            $lesson_data->video = $post['video'][$lang];
             $lesson_data->text = $post['text'][$lang];
             $lesson_data->save();
         }
 
         return;
     }
+
+    public static function currentLesson($lessonId)
+    {
+        return self::where('id', $lessonId)->with('data')->first();
+    }
+
+    public static function similarLessons($lessonId, $categoryId)
+    {
+        return self::where('category_id', $categoryId)
+            ->where('id', '<>', $lessonId)
+            ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
+    }
+
+
 }

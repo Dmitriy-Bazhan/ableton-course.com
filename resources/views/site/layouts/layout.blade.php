@@ -8,12 +8,13 @@
 
     <title>Ableton Live tutorial course</title>
 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/open-iconic-master/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+{{--    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>--}}
     <script src="{{ asset('js/jquery-3.4.1.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('components/fontawesome-5.7.2/js/all.js') }}" type="text/javascript"></script>
@@ -68,6 +69,7 @@
 
 @show
 
+
 <main>
 
     @yield('content')
@@ -95,6 +97,8 @@
     </div>
 
 </footer>
+
+
 
 </body>
 

@@ -38,7 +38,7 @@ $('.choose_your_lesson').click(function (event) {
         },
         success: function (data) {
 
-            $('#remove_block').html(data.response_table);
+            $('#remove_block').html(data.response);
         },
         error: function (errorThrown) {
             console.log(errorThrown);
@@ -47,24 +47,4 @@ $('.choose_your_lesson').click(function (event) {
 
 });
 
-function copyLink(element) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(element).html()).select();
-    document.execCommand("copy");
-    $temp.remove();
-}
 
-$('#pushLike').click(function() {
-    console.log($('#pushLike').attr('data-id'));
-    removeButtonBorder($(this));
-});
-
-
-function removeButtonBorder(element) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val(element.html()).select();
-    $temp.remove();
-    return;
-}
