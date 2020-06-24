@@ -2,7 +2,7 @@
 
 <div class="row">
 
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-mg-9">
 
         @if(isset($currentLesson->data->video) && !is_null($currentLesson->data->video))
 
