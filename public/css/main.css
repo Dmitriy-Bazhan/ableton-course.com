@@ -2,10 +2,6 @@ html {
     height: 100%;
 }
 
-main {
-    padding-bottom: 75px;
-}
-
 footer {
     position: absolute;
     bottom: 0;
@@ -13,6 +9,9 @@ footer {
     height: 75px;
     background-color: #141e25;
     color: #9d9d9d;
+}
+header {
+    background-color: #141e25;
 }
 
 .copyright--lg {
@@ -99,6 +98,8 @@ h3, h4, h5, h6 {
     box-shadow: 10px 10px;
     padding: 30px;
     margin-bottom: 25px;
+    background: #373539;
+    border-radius: 30px;
 }
 
 .lesson_comments_menu_scroll {
@@ -109,13 +110,16 @@ h3, h4, h5, h6 {
 }
 
 .button_copy_link {
+    padding: 10px 10px 10px 10px;
+    background: #373539;
+    color: wheat;
+    border-radius: 15px;
+    border: solid 1px black;
+    box-shadow: 10px 10px black;
     text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);
+    /*-webkit-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);*/
+    /*-moz-box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);*/
+    /*box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.8);*/
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
@@ -132,6 +136,9 @@ h3, h4, h5, h6 {
     background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
     background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
     background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+}
+.button_copy_link:focus {
+    outline: 0;
 }
 
 .lesson_link {
@@ -207,15 +214,43 @@ h3, h4, h5, h6 {
     width: 35%;
 }
 
-.message_div {
+.message_div1 {
     width: 100%;
-    border: solid 2px #6d6a80;
-    border-radius: 10px;
-    background: #6d6a80;
+    /*border: solid 2px #6d6a80;*/
+    padding: 15px;
+    /*border-radius: 30px;*/
+    /*background: #6d6a80;*/
+}
+
+.span_message_vue {
+    color: wheat;
+    width: 95%;
+    word-break: break-all;
+    font-size: 15pt;
 }
 
 .span_message{
     color: #c0c8b3;
+    width: 95%;
+    word-break: break-all;
+    font-size: 15pt;
+}
+.div_date_message{
+    /*width: 100%;*/
+    display: inline-block;
+    /*border: solid 2px #6d6a80;*/
+    padding: 5px;
+    /*border-radius: 30px;*/
+    /*background: #6d6a80;*/
+}
+.date_message{
+    color: #ec665c;
+    width: 95%;
+    word-break: break-all;
+    font-size: 12pt;
+}
+.username_message{
+    color: #39ec3f;
     width: 95%;
     word-break: break-all;
     font-size: 15pt;

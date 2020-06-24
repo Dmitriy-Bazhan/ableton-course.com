@@ -1953,12 +1953,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comments'],
   mounted: function mounted() {
     var arr = JSON.parse(this.comments);
     arr.forEach(function callback(element, index, arr) {
-      var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' ' + element['body'] + '</span></div><br></div>';
+      var insert = '<div class="message">' + '<div class="div_date_message"><span class="date_message">' + element['created_at'] + '</span></div>' + '<div class="message_div1">' + '<span class="span_message_vue">' + ' ' + element['body'] + '</span>' + '</div><br></div>';
       $('.messages').append(insert);
     });
   },
@@ -1981,7 +1986,7 @@ __webpack_require__.r(__webpack_exports__);
     addMessage: function addMessage(message, user) {
       var date = new Date();
       var timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      var putVar = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + timestamp + message + '</span></div><br></div>';
+      var putVar = '<div class="message">' + '<div class="div_date_message"><span class="date_message">' + timestamp + '</span></div>' + '<div class="message_div1">' + '<span class="span_message_vue">' + message + '</span>' + '</div><br></div>';
       $('#block_comments').after(putVar);
     },
     sendMessage: function sendMessage() {
@@ -6470,7 +6475,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.message_div1 {\n    width: 100%;\n    border: solid 2px #6d6a80;\n    padding: 15px;\n    border-radius: 30px;\n    background: #6d6a80;\n}\n.span_message_vue {\n    color: #ecc699;\n    width: 95%;\n    word-break: break-all;\n    font-size: 15pt;\n}\n.textarea_in_vue {\n    resize: none;\n    width: 91%;\n    background: #6d6a80;\n    outline: none;\n    font-size: 15pt;\n    color: #ecc699;\n    padding: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.message_button {\n    float: right;\n    padding-left: 20px;\n    padding-right: 20px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    background: #373539;\n    color: wheat;\n    border-radius: 15px;\n    border: solid 1px black;\n    box-shadow: 10px 10px black;\n}\n.message_button:hover {\n    color: lightgreen;\n    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);\n}\n.message_button:focus {\n    outline: 0;\n}\n.message_button:active {\n    box-shadow: none !important;\n    padding: 10px;\n    background: #373539;\n    color: wheat;\n    border-radius: 15px;\n    border: solid 1px black;\n    box-shadow: 10px 10px black;\n}\n.message_div1 {\n    width: 100%;\n    /*border: solid 2px #6d6a80;*/\n    padding: 15px;\n    /*border-radius: 30px;*/\n    /*background: #6d6a80;*/\n}\n.span_message_vue {\n    color: wheat;\n    width: 95%;\n    word-break: break-all;\n    font-size: 15pt;\n}\n.textarea_in_vue {\n    resize: none;\n    width: 100%;\n    /*background: #6d6a80;*/\n    background: #373539;\n    border: solid 1px black;\n    border-radius: 30px;\n    box-shadow: 10px 10px black;\n    outline: none;\n    font-size: 15pt;\n    color: #ecc699;\n    padding: 15px;\n}\n.date_message {\n    color: #ec665c;\n    width: 95%;\n    word-break: break-all;\n    font-size: 12pt;\n}\n.username_message {\n    color: #39ec3f;\n    width: 95%;\n    word-break: break-all;\n    font-size: 15pt;\n}\n.div_date_message {\n    /*width: 100%;*/\n    display: inline-block;\n    /*border: solid 2px #6d6a80;*/\n    padding: 5px;\n    /*border-radius: 30px;*/\n    /*background: #6d6a80;*/\n}\n", ""]);
 
 // exports
 
@@ -44242,7 +44247,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "chatbox p-3" }, [
     _c("div", { staticClass: "row mt-5" }, [
-      _c("div", { staticClass: "col-10" }, [
+      _c("div", { staticClass: "col-lg-9" }, [
         _c("textarea", {
           directives: [
             {
@@ -44253,7 +44258,7 @@ var render = function() {
             }
           ],
           staticClass: "textarea_in_vue",
-          attrs: { rows: "3", maxlength: "500" },
+          attrs: { rows: "3", maxlength: "500", placeholder: "Enter message" },
           domProps: { value: _vm.textMessage },
           on: {
             input: function($event) {
@@ -44268,18 +44273,18 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col-lg-9" }, [
         _c(
           "button",
           {
-            staticClass: "btn btn-primary",
+            staticClass: "message_button",
             on: {
               click: function($event) {
                 return _vm.sendMessage()
               }
             }
           },
-          [_vm._v("Send")]
+          [_c("span", { staticClass: "oi oi-comment-square" })]
         )
       ])
     ]),

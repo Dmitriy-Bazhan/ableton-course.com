@@ -7,7 +7,7 @@ function copyLink(element) {
 }
 
 $('#pushLike').click(function () {
-    removeButtonBorder($(this));
+    // removeButtonBorder($(this));
 
     $.ajax({
         method: 'post',
@@ -29,7 +29,7 @@ $('#pushLike').click(function () {
 });
 
 $('#pushDislike').click(function () {
-    removeButtonBorder($(this));
+    // removeButtonBorder($(this));
 
     $.ajax({
         method: 'post',
@@ -50,11 +50,11 @@ $('#pushDislike').click(function () {
 });
 
 
-function removeButtonBorder(element) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val(element.html()).select();
-    $temp.remove();
-    return;
-}
+// function removeButtonBorder(element) {
+//     var $temp = $("<input>");
+//     $("body").append($temp);
+//     $temp.val(element.html()).select();
+//     $temp.remove();
+//     return;
+// }
 

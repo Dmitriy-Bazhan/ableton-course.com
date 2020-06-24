@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-transparent navbar-dark">
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm head fixed-top" style="background-color: #6d6a80;">
 
     <a class="navbar-brand" @if($page_name != '/') href="{{ url_with_locale('/') }}" @endif>
 

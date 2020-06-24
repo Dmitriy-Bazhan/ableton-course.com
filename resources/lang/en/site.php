@@ -44,6 +44,7 @@ return [
         'push_dislike' => 'Dislike',
         'favorite' => 'Favorite',
         'copy_link' => 'Copy link',
+        'declaration' => 'Register or go to the site for the opportunity to interact and comment',
     ],
     'user_profile' => [
         'name_page' => 'Profile',

@@ -1,0 +1,35 @@
+@media screen and (max-width: 1920px) {
+    main {
+        margin-top: 5%;
+        padding-bottom: 75px;
+    }
+}
+
+@media screen and (max-width: 1500px){
+    main {
+        margin-top: 10%;
+        padding-bottom: 75px;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    main {
+        margin-top: 15%;
+        padding-bottom: 75px;
+    }
+}
+
+@media screen and (max-width: 900px){
+    main {
+        margin-top: 20%;
+        padding-bottom: 75px;
+    }
+}
+
+
+@media screen and (max-width: 450px){
+    main {
+        margin-top: 40%;
+        padding-bottom: 75px;
+    }
+}
