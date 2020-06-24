@@ -17,7 +17,7 @@ class ChatController extends Controller
             $comment->author = Auth::id();
 
             $user = \App\User::find($comment->author)->name;
-            $message = ' ' . $user . ': ' . $message;
+            $message = '<span class="username_message"> ' . $user . ': </span> ' . $message;
 
             $comment->good_rang = 0;
             $comment->bad_rang = 0;

@@ -7,15 +7,36 @@ $('.list_lessons').hide();
     $(current_div).attr('data-view', 'show');
 }());
 
-$('#category_list').on('click', '#category_list_category', function () {
+(function () {
+    var array = document.cookie.split(";");
+    array.sort();
+    for (let i = 0; i < array.length; i++) {
+        var div = '#list_lessons_' + i;
+        if(array[i] == ' ' + i + '=show')
+        {
+            $(div).show();
+            $(div).attr('data-view', 'show');
+        }
+        if(array[i] == ' ' + i + '=hide')
+        {
+            $(div).hide();
+            $(div).attr('data-view', 'hide');
+        }
+    }
+}());
 
+
+$('#category_list').on('click', '#category_list_category', function () {
     var number = $(this).attr('data-list');
     var div = '#list_lessons_' + number;
-
     if ($(div).attr('data-view') == 'hide') {
+        var cook = number + '=show';
+        document.cookie = cook;
         $(div).show();
         $(div).attr('data-view', 'show');
     } else {
+        var cook = number + '=hide';
+        document.cookie = cook;
         $(div).hide();
         $(div).attr('data-view', 'hide');
     }
@@ -23,7 +44,7 @@ $('#category_list').on('click', '#category_list_category', function () {
 });
 
 $('.choose_your_lesson').click(function (event) {
-    event.preventDefault();
+    // event.preventDefault();
     var id = $(this).attr('data-id');
     $('.choose_your_lesson').attr('style', 'color:#f5d3b3');
     $(this).attr('style', 'color:#afdbf5');

@@ -1,47 +1,47 @@
 @if(Auth::user())
 
-    <button class="btn-success button_copy_link" id="pushLike"
+    <button class="button_copy_link" id="pushLike"
             data-user-push="{{ $userPushLike }}"
             data-id="{{$currentLesson->id}}"
             data-token="{{ csrf_token() }}"
             title="@lang('site.lesson.push_like')"><span class="oi oi-thumb-up"
-                   @if($userPushLike == 1) style="color:blue;" @endif>
+                   @if($userPushLike == 1) style="color:lightgreen;" @endif>
         </span>&nbsp; {{ $currentLesson->data->good_rang }}
     </button>
 
-    <button class="btn-danger button_copy_link" id="pushDislike"
+    <button class="button_copy_link" id="pushDislike"
             data-id="{{$currentLesson->id}}"
             data-user-push="{{ $userPushDislike }}"
             data-token="{{ csrf_token() }}"
             title="@lang('site.lesson.push_dislike')"
-            @if($userPushDislike == 1) style="color:blue;" @endif>
+            @if($userPushDislike == 1) style="color:red;" @endif>
         <span class="oi oi-thumb-down"></span>&nbsp; {{ $currentLesson->data->bad_rang }}
     </button>
 
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.views')"><span
+    <button class="button_copy_link" disabled title="@lang('site.lesson.views')"><span
             class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
     </button>
 
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.favorite')">
+    <button class="button_copy_link" disabled title="@lang('site.lesson.favorite')">
         <span class="oi oi-pin"></span>
     </button>
 
 @else
-    <h6>Зарегестрируйтесь или зайдите на сайт для возможности взаимодействовать и комментировать</h6>
+    <h6>@lang('site.lesson.declaration')</h6>
 
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.push_like')">
+    <button class="button_copy_link" disabled title="@lang('site.lesson.push_like')">
         <span class="oi oi-thumb-up"></span>&nbsp; {{ $currentLesson->data->good_rang }}
     </button>
 
-    <button class="btn-danger button_copy_link" disabled title="@lang('site.lesson.push_dislike')">
+    <button class="button_copy_link" disabled title="@lang('site.lesson.push_dislike')">
         <span class="oi oi-thumb-down"></span>&nbsp; {{ $currentLesson->data->bad_rang }}
     </button>
 
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.views')"><span
+    <button class="button_copy_link" disabled title="@lang('site.lesson.views')"><span
             class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
     </button>
 
-    <button class="btn-success button_copy_link" disabled title="@lang('site.lesson.favorite')">
+    <button class="button_copy_link" disabled title="@lang('site.lesson.favorite')">
         <span class="oi oi-pin"></span>
     </button>
 

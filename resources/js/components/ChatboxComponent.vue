@@ -4,9 +4,10 @@
 
         <div class="row mt-5">
 
-            <div class="col-10">
+            <div class="col-lg-9">
 
-                <textarea class="textarea_in_vue" rows="3" maxlength="500" v-model="textMessage"></textarea>
+                <textarea class="textarea_in_vue" rows="3" maxlength="500" v-model="textMessage"
+                          placeholder="Enter message"></textarea>
 
             </div>
 
@@ -14,9 +15,13 @@
 
         <div class="row mt-2">
 
-            <div class="col">
+            <div class="col-lg-9">
 
-                <button class="btn btn-primary" @click="sendMessage()">Send</button>
+                <button class="message_button" @click="sendMessage()">
+<!--                    <span class="oi oi-media-skip-forward"></span>-->
+                    <span class="oi oi-comment-square"></span>
+<!--                    <span class="oi oi-envelope-closed"></span>-->
+                </button>
 
             </div>
 
@@ -50,7 +55,11 @@
         mounted() {
             var arr = JSON.parse(this.comments);
             arr.forEach(function callback(element, index, arr) {
-                var insert = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + element['created_at'] + ' ' + element['body'] + '</span></div><br></div>';
+                var insert = '<div class="message">' +
+                    '<div class="div_date_message"><span class="date_message">' + element['created_at'] + '</span></div>' +
+                    '<div class="message_div1">' +
+                    '<span class="span_message_vue">' + ' ' + element['body'] + '</span>' +
+                    '</div><br></div>';
                 $('.messages').append(insert);
             });
         },
@@ -69,10 +78,14 @@
                 });
         },
         methods: {
-            addMessage(message,user) {
+            addMessage(message, user) {
                 let date = new Date();
                 let timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-                var putVar = '<div class="message"><div class="message_div1"><span class="span_message_vue">' + timestamp + message + '</span></div><br></div>';
+                var putVar = '<div class="message">' +
+                    '<div class="div_date_message"><span class="date_message">' + timestamp + '</span></div>' +
+                    '<div class="message_div1">' +
+                    '<span class="span_message_vue">' + message + '</span>' +
+                    '</div><br></div>';
                 $('#block_comments').after(putVar);
             },
             sendMessage() {
@@ -84,16 +97,48 @@
 </script>
 
 <style>
+    .message_button {
+        float: right;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #373539;
+        color: wheat;
+        border-radius: 15px;
+        border: solid 1px black;
+        box-shadow: 10px 10px black;
+    }
+
+    .message_button:hover {
+        color: lightgreen;
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    .message_button:focus {
+        outline: 0;
+    }
+
+    .message_button:active {
+        box-shadow: none !important;
+        padding: 10px;
+        background: #373539;
+        color: wheat;
+        border-radius: 15px;
+        border: solid 1px black;
+        box-shadow: 10px 10px black;
+    }
+
     .message_div1 {
         width: 100%;
-        border: solid 2px #6d6a80;
+        /*border: solid 2px #6d6a80;*/
         padding: 15px;
-        border-radius: 30px;
-        background: #6d6a80;
+        /*border-radius: 30px;*/
+        /*background: #6d6a80;*/
     }
 
     .span_message_vue {
-        color: #ecc699;
+        color: wheat;
         width: 95%;
         word-break: break-all;
         font-size: 15pt;
@@ -101,11 +146,38 @@
 
     .textarea_in_vue {
         resize: none;
-        width: 91%;
-        background: #6d6a80;
+        width: 100%;
+        /*background: #6d6a80;*/
+        background: #373539;
+        border: solid 1px black;
+        border-radius: 30px;
+        box-shadow: 10px 10px black;
         outline: none;
         font-size: 15pt;
         color: #ecc699;
         padding: 15px;
+    }
+
+    .date_message {
+        color: #ec665c;
+        width: 95%;
+        word-break: break-all;
+        font-size: 12pt;
+    }
+
+    .username_message {
+        color: #39ec3f;
+        width: 95%;
+        word-break: break-all;
+        font-size: 15pt;
+    }
+
+    .div_date_message {
+        /*width: 100%;*/
+        display: inline-block;
+        /*border: solid 2px #6d6a80;*/
+        padding: 5px;
+        /*border-radius: 30px;*/
+        /*background: #6d6a80;*/
     }
 </style>

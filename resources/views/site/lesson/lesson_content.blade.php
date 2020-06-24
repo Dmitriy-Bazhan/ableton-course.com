@@ -1,4 +1,4 @@
-<h3>{{ $currentLesson->data->name }}</h3>
+<h3 id="up">{{ $currentLesson->data->name }}</h3>
 
 <div class="row">
 
@@ -88,15 +88,24 @@
 
             @foreach($comments as $comment)
 
-                <div class="message_div">
+                <div class="message">
+
+                    <div class="div_date_message">
+
+                        <span class="date_message"> {{ $comment['created_at'] }} </span>
+
+                    </div>
+
+                    <div class="message_div1">
 
                 <span
-                    class="d-inline-block nav-link span_message">{{ $comment['created_at'] }} : {{ $comment['body'] }}</span>
+                    class="span_message_vue"> {!! $comment['body'] !!}</span>
+
+                    </div>
+
+                    <br>
 
                 </div>
-
-                <br>
-
 
             @endforeach
 
@@ -106,10 +115,12 @@
 
 @endif
 
-<script>
-    var block = document.getElementById('block_comments');
-    block.scrollTop = block.scrollHeight;
-</script>
+<a href="#up" class="button_copy_link" style="margin-left: 75%;"><span class="oi oi-data-transfer-upload"></span></a>
+
+{{--<script>--}}
+{{--    var block = document.getElementById('block_comments');--}}
+{{--    block.scrollTop = block.scrollHeight;--}}
+{{--</script>--}}
 
 
 
