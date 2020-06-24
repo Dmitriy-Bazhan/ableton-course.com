@@ -6,9 +6,9 @@
 
         @if(isset($currentLesson->data->video) && !is_null($currentLesson->data->video))
 
-            <div class="video_player">
+            <div class="video_player" data-token="{{ csrf_token() }}" data-id="{{ $currentLesson->id }}">
 
-                <iframe width="100%"
+                <iframe width="100%" id="video_lesson_div"
                         height="655px"
                         src="{{ str_replace('watch?v=','embed/',$currentLesson->data->video) }}"
                         frameborder="0"
@@ -103,7 +103,7 @@
 
                     </div>
 
-                    <br>
+                    <hr>
 
                 </div>
 

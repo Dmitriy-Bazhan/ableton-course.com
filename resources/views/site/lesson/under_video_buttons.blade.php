@@ -5,7 +5,7 @@
             data-id="{{$currentLesson->id}}"
             data-token="{{ csrf_token() }}"
             title="@lang('site.lesson.push_like')"><span class="oi oi-thumb-up"
-                   @if($userPushLike == 1) style="color:lightgreen;" @endif>
+                                                         @if($userPushLike == 1) style="color:lightgreen;" @endif>
         </span>&nbsp; {{ $currentLesson->data->good_rang }}
     </button>
 
@@ -22,7 +22,12 @@
             class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
     </button>
 
-    <button class="button_copy_link" disabled title="@lang('site.lesson.favorite')">
+    <button class="button_copy_link" id="add_to_favorites"
+            data-id="{{$currentLesson->id}}"
+            data-user-push="{{ $userAddFavorites }}"
+            data-token="{{ csrf_token() }}"
+            title="@lang('site.lesson.favorite')"
+            @if($userAddFavorites == 1) style="color:lightgreen;" @endif>
         <span class="oi oi-pin"></span>
     </button>
 

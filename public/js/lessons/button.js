@@ -7,7 +7,6 @@ function copyLink(element) {
 }
 
 $('#pushLike').click(function () {
-    // removeButtonBorder($(this));
 
     $.ajax({
         method: 'post',
@@ -29,7 +28,6 @@ $('#pushLike').click(function () {
 });
 
 $('#pushDislike').click(function () {
-    // removeButtonBorder($(this));
 
     $.ajax({
         method: 'post',
@@ -49,12 +47,25 @@ $('#pushDislike').click(function () {
     });
 });
 
+$('#add_to_favorites').click(function () {
 
-// function removeButtonBorder(element) {
-//     var $temp = $("<input>");
-//     $("body").append($temp);
-//     $temp.val(element.html()).select();
-//     $temp.remove();
-//     return;
-// }
+    $.ajax({
+        method: 'post',
+        url: 'lesson_add_to_favorites',
+        dataType: 'json',
+        data: {
+            _token: $(this).data('token'),
+            id: $(this).data('id'),
+            push: $(this).data('user-push'),
+        },
+        success: function (data) {
+            $('#under_video_buttom').html(data.response);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+});
+
+
 

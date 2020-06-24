@@ -32,6 +32,7 @@ class LessonController extends Controller
 
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
+        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
         $data['currentLesson'] = Lesson::currentLesson($lessonId);
         $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
         $data['categories'] = Category::categories();
@@ -41,24 +42,11 @@ class LessonController extends Controller
         return view('site.lesson.index', $data);
     }
 
-    public function ajaxLesson(Request $request)
+    public function userStartVideo(Request $request)
     {
         $lessonId = $request->post('id');
-
-        if (Auth::check()) {
-            User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
-        }
-
-        $data['userPushLike'] = $this->userPushLike($lessonId);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);
-        $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
-        $data['comments'] = Lesson_comment::comments($lessonId);
-        session()->put('currentLesson', $data['currentLesson']->id);
-
-        return response()->json([
-            'response' => view('site.lesson.lesson_content', $data)->render()
-        ], 200);
+        Lesson_data::where('id', $lessonId)->where('lang', app()->getLocale())->increment('views');
+        return response()->json([], 200);
     }
 
     public function lessonPushLikeAjax(Request $request)
@@ -67,9 +55,9 @@ class LessonController extends Controller
         $push = $request->post('push');
         $lang = app()->getLocale();
         $userId = Auth::id();
+        $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
 
         if ($push == 0) {
-            $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
             $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
@@ -79,7 +67,6 @@ class LessonController extends Controller
 
         } elseif ($push == 1) {
 
-            $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
             $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $arr = explode(',', $string);
@@ -100,6 +87,7 @@ class LessonController extends Controller
         $data['currentLesson'] = Lesson::currentLesson($lessonId);;
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
+        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
 
         return response()->json([
             'response' => view('site.lesson.under_video_buttons', $data)->render()
@@ -112,9 +100,9 @@ class LessonController extends Controller
         $push = $request->post('push');
         $lang = app()->getLocale();
         $userId = Auth::id();
+        $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
 
         if ($push == 0) {
-            $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
             $temp = isset($user_data->push_dislike) ? json_decode($user_data->push_dislike, true) : null;
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
@@ -124,7 +112,6 @@ class LessonController extends Controller
 
         } elseif ($push == 1) {
 
-            $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
             $temp = isset($user_data->push_dislike) ? json_decode($user_data->push_dislike, true) : null;
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $arr = explode(',', $string);
@@ -145,6 +132,47 @@ class LessonController extends Controller
         $data['currentLesson'] = Lesson::currentLesson($lessonId);;
         $data['userPushLike'] = $this->userPushLike($lessonId);
         $data['userPushDislike'] = $this->userPushDislike($lessonId);
+        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
+
+        return response()->json([
+            'response' => view('site.lesson.under_video_buttons', $data)->render()
+        ], 200);
+    }
+
+    public function lessonAddToFavorites(Request $request)
+    {
+        $lessonId = $request->post('id');
+        $push = $request->post('push');
+        $lang = app()->getLocale();
+        $userId = Auth::id();
+        $user_data = UserData::where('user_id', $userId)->select('favorites')->first();
+
+        if ($push == 0) {
+            $temp = isset($user_data->favorites) ? json_decode($user_data->favorites, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
+            $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
+            UserData::where('user_id', $userId)->update(['favorites' => json_encode($temp)]);
+
+        } elseif ($push == 1) {
+
+            $temp = isset($user_data->favorites) ? json_decode($user_data->favorites, true) : null;
+            $string = isset($temp[$lang]) ? $temp[$lang] : '';
+            $arr = explode(',', $string);
+
+            foreach ($arr as $key => $item) {
+                if ($arr[$key] == $lessonId) {
+                    unset($arr[$key]);
+                }
+            }
+            $string = implode(',', $arr);
+            $temp[$lang] = $string;
+            UserData::where('user_id', $userId)->update(['favorites' => json_encode($temp)]);
+        }
+
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
+        $data['userPushLike'] = $this->userPushLike($lessonId);
+        $data['userPushDislike'] = $this->userPushDislike($lessonId);
+        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
 
         return response()->json([
             'response' => view('site.lesson.under_video_buttons', $data)->render()
@@ -187,5 +215,24 @@ class LessonController extends Controller
             }
         }
         return $userPushDislike;
+    }
+
+    private function userAddFavorites($lessonId)
+    {
+        $userAddFavorites = null;
+        if (Auth::check()) {
+            $userData = UserData::where('user_id', Auth::id())->select('favorites')->first();
+            if (!is_null($userData->favorites)) {
+                $temp = json_decode($userData->favorites, true);
+                $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+                $arr = explode(',', $string);
+            }
+            if (!empty($string) && in_array($lessonId, $arr)) {
+                $userAddFavorites = '1';
+            } else {
+                $userAddFavorites = '0';
+            }
+        }
+        return $userAddFavorites;
     }
 }

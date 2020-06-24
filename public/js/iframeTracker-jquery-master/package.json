@@ -1,0 +1,41 @@
+{
+  "name": "jquery.iframetracker",
+  "version": "2.1.0",
+  "description": "jQuery Plugin to track click on iframes (like Google Adsense or Facebook Like button).",
+  "main": "dist/jquery.iframetracker.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vincepare/iframeTracker-jquery.git"
+  },
+  "keywords": [
+    "jquery-plugin",
+    "iframe",
+    "youtube",
+    "adsense",
+    "advertising",
+    "click"
+  ],
+  "author": "Vincent Paré",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/vincepare/iframeTracker-jquery/issues"
+  },
+  "homepage": "https://github.com/vincepare/iframeTracker-jquery",
+  "scripts": {
+    "test": "grunt eslint qunit",
+    "build": "grunt",
+    "prepare": "grunt"
+  },
+  "peerDependencies": {
+    "jquery": ">=1.4.4"
+  },
+  "devDependencies": {
+    "eslint-config-jquery": "^1.0.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-qunit": "^2.0.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-eslint": "^19.0.0",
+    "grunt-umd": "^2.4.0"
+  }
+}
