@@ -30,10 +30,8 @@ class LessonController extends Controller
             $lessonId = Lesson::orderBy('id')->select('id')->firstOrFail()->id;
         }
 
-        $data['userPushLike'] = $this->userPushLike($lessonId);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        $data = array_merge($data, $this->usefulVars($lessonId));
+
         $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
         $data['categories'] = Category::categories();
         $data['comments'] = Lesson_comment::comments($lessonId);
@@ -42,6 +40,7 @@ class LessonController extends Controller
         return view('site.lesson.index', $data);
     }
 
+    ##Ajax
     public function userStartVideo(Request $request)
     {
         $lessonId = $request->post('id');
@@ -49,6 +48,7 @@ class LessonController extends Controller
         return response()->json([], 200);
     }
 
+    ##Ajax
     public function lessonPushLikeAjax(Request $request)
     {
         $lessonId = $request->post('id');
@@ -84,16 +84,13 @@ class LessonController extends Controller
             $goodRang->decrement('good_rang');
         }
 
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
-        $data['userPushLike'] = $this->userPushLike($lessonId);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
-
+        $data = $this->usefulVars($lessonId);
         return response()->json([
             'response' => view('site.lesson.under_video_buttons', $data)->render()
         ], 200);
     }
 
+    ##Ajax
     public function lessonPushDislikeAjax(Request $request)
     {
         $lessonId = $request->post('id');
@@ -129,16 +126,13 @@ class LessonController extends Controller
             $badRang->decrement('bad_rang');
         }
 
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
-        $data['userPushLike'] = $this->userPushLike($lessonId);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
-
+        $data = $this->usefulVars($lessonId);
         return response()->json([
             'response' => view('site.lesson.under_video_buttons', $data)->render()
         ], 200);
     }
 
+    ##Ajax
     public function lessonAddToFavorites(Request $request)
     {
         $lessonId = $request->post('id');
@@ -169,69 +163,70 @@ class LessonController extends Controller
             UserData::where('user_id', $userId)->update(['favorites' => json_encode($temp)]);
         }
 
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);;
-        $data['userPushLike'] = $this->userPushLike($lessonId);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId);
-        $data['userAddFavorites'] = $this->userAddFavorites($lessonId);
+        $data = $this->usefulVars($lessonId);
 
         return response()->json([
             'response' => view('site.lesson.under_video_buttons', $data)->render()
         ], 200);
     }
 
-    private function userPushLike($lessonId)
+    private function usefulVars($lessonId): array
+    {
+        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        $userData = null;
+        if (Auth::check()) {
+            $userData = UserData::where('user_id', Auth::id())->select('push_like', 'push_dislike', 'favorites')->first();
+        }
+        $data['userPushLike'] = $this->userPushLike($lessonId, $userData);
+        $data['userPushDislike'] = $this->userPushDislike($lessonId, $userData);
+        $data['userAddFavorites'] = $this->userAddFavorites($lessonId, $userData);
+        return $data;
+    }
+
+    private function userPushLike($lessonId, $userData)
     {
         $userPushLike = null;
-        if (Auth::check()) {
-            $userData = UserData::where('user_id', Auth::id())->select('push_like')->first();
-            if (!is_null($userData->push_like)) {
-                $temp = json_decode($userData->push_like, true);
-                $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
-                $arr = explode(',', $string);
-            }
-            if (!empty($string) && in_array($lessonId, $arr)) {
-                $userPushLike = '1';
-            } else {
-                $userPushLike = '0';
-            }
+        if (!is_null($userData->push_like)) {
+            $temp = json_decode($userData->push_like, true);
+            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+            $arr = explode(',', $string);
+        }
+        if (!empty($string) && in_array($lessonId, $arr)) {
+            $userPushLike = '1';
+        } else {
+            $userPushLike = '0';
         }
         return $userPushLike;
     }
 
-    private function userPushDislike($lessonId)
+    private function userPushDislike($lessonId, $userData)
     {
         $userPushDislike = null;
-        if (Auth::check()) {
-            $userData = UserData::where('user_id', Auth::id())->select('push_dislike')->first();
-            if (!is_null($userData->push_dislike)) {
-                $temp = json_decode($userData->push_dislike, true);
-                $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
-                $arr = explode(',', $string);
-            }
-            if (!empty($string) && in_array($lessonId, $arr)) {
-                $userPushDislike = '1';
-            } else {
-                $userPushDislike = '0';
-            }
+        if (!is_null($userData->push_dislike)) {
+            $temp = json_decode($userData->push_dislike, true);
+            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+            $arr = explode(',', $string);
+        }
+        if (!empty($string) && in_array($lessonId, $arr)) {
+            $userPushDislike = '1';
+        } else {
+            $userPushDislike = '0';
         }
         return $userPushDislike;
     }
 
-    private function userAddFavorites($lessonId)
+    private function userAddFavorites($lessonId, $userData)
     {
         $userAddFavorites = null;
-        if (Auth::check()) {
-            $userData = UserData::where('user_id', Auth::id())->select('favorites')->first();
-            if (!is_null($userData->favorites)) {
-                $temp = json_decode($userData->favorites, true);
-                $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
-                $arr = explode(',', $string);
-            }
-            if (!empty($string) && in_array($lessonId, $arr)) {
-                $userAddFavorites = '1';
-            } else {
-                $userAddFavorites = '0';
-            }
+        if (!is_null($userData->favorites)) {
+            $temp = json_decode($userData->favorites, true);
+            $string = isset($temp[app()->getLocale()]) ? $temp[app()->getLocale()] : '';
+            $arr = explode(',', $string);
+        }
+        if (!empty($string) && in_array($lessonId, $arr)) {
+            $userAddFavorites = '1';
+        } else {
+            $userAddFavorites = '0';
         }
         return $userAddFavorites;
     }
