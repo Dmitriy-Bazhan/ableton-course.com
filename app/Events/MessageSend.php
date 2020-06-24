@@ -10,6 +10,7 @@ class MessageSend implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
+
     public function __construct($message)
     {
         $this->message = $message;

@@ -22,6 +22,7 @@
         countries[2] = 'France';
         countries[3] = 'Italy';
         countries[5] = 'Argentina';
+        countries[6] = 'Italy';
 
         sortCountries(countries);
 

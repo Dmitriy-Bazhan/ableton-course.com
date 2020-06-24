@@ -220,8 +220,17 @@
       <workItem from="1592297787561" duration="4677000" />
       <workItem from="1592316153812" duration="6494000" />
       <workItem from="1592328181069" duration="3331000" />
+<<<<<<< HEAD
       <workItem from="1592380370999" duration="4528000" />
 >>>>>>> 5d20fa7cf8792f1ef7262a0840e7954a45d706f9
+=======
+      <workItem from="1592380370999" duration="6370000" />
+      <workItem from="1592471739367" duration="90000" />
+      <workItem from="1592507366343" duration="1127000" />
+      <workItem from="1592508509581" duration="52000" />
+      <workItem from="1592662055078" duration="8740000" />
+      <workItem from="1592896891068" duration="7720000" />
+>>>>>>> 463de8596b6df10aad14d0d0ef92d160faf7e832
     </task>
     <servers />
   </component>
@@ -266,10 +275,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="218" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591726214085" />
-    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1592380454036">
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog" timestamp="1592896895254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+<<<<<<< HEAD
     <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592380454036" />
 >>>>>>> 5d20fa7cf8792f1ef7262a0840e7954a45d706f9
+=======
+    <state x="591" y="302" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592896895254" />
+>>>>>>> 463de8596b6df10aad14d0d0ef92d160faf7e832
   </component>
 </project>
