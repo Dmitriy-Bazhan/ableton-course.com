@@ -19,6 +19,10 @@ class HomepageController extends Controller
             return redirect('/' . $path);
         }
 
+        if (Auth::check()) {
+            session()->forget('message_for_banned_users');
+        }
+
         $this->data = self::necessarily();
         $this->data['page_name'] = '/';
         return view('site.pages.homepage', $this->data);

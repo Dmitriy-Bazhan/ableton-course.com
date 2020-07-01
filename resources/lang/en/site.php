@@ -12,24 +12,36 @@ return [
         'you_enter' => 'You enter as ',
         'logout' => 'Logout',
         'blog' => 'Blog',
+        'you_banned' => 'You have ban',
+        'chat' => 'Chat',
     ],
     'homepage' => [
         'greeting' => 'Online school for you and your music.',
         'new_items' => 'New items',
         'popular_lesson' => 'Popular lesson',
     ],
+
+    'chat' => [
+        'name_page' => 'Chat',
+    ],
+
     'about_us' => [
         'name_page' => 'About Us'
     ],
+
     'contacts' => [
         'name_page' => 'Contacts',
     ],
+
     'blog' => [
         'name_page' => 'Blog',
     ],
+
     'forum' => [
         'name_page' => 'Forum',
+        'declaration' => 'Only registered users can post threads.',
     ],
+
     'lesson' => [
         'name_page' => 'Lessons',
         'lesson' => 'Lesson',
@@ -46,9 +58,11 @@ return [
         'copy_link' => 'Copy link',
         'declaration' => 'Register or go to the site for the opportunity to interact and comment',
     ],
+
     'user_profile' => [
         'name_page' => 'Profile',
     ],
+
     'category' => [
         'list_name' => 'Category',
     ],

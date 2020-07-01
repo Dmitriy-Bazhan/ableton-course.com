@@ -4,50 +4,46 @@
 
     <h3>@lang('site.forum.name_page')</h3>
 
-    {{--    <div class="video_player">--}}
+    <div class="container-fluid">
 
-    {{--        <div id="player">For player</div>--}}
+        <div class="row justify-content-center">
 
-    {{--    </div>--}}
+            <div class="col-xl-6" style="border: solid 1px red;">
 
-    {{--    <script src="{{ asset('js/script_en.js') }}" type="text/javascript"></script>--}}
-    {{--    <script src="{{ asset('js/lesson_page.js') }}" type="text/javascript"></script>--}}
+                <h6>@lang('site.forum.declaration')</h6>
 
+            </div>
 
+        </div>
 
-    <script>
-        let countries = [];
-        countries[0] = 'Canada';
-        countries[1] = 'USA';
-        countries[2] = 'France';
-        countries[3] = 'Italy';
-        countries[5] = 'Argentina';
-        countries[6] = 'Italy';
+    </div>
 
-        sortCountries(countries);
+    <br>
 
-        function sortCountries(countries) {
-            var sum = '';
-            var a = '';
-            var temp = JSON.parse(JSON.stringify(countries));
-            temp.sort();
+    <div class="container-fluid">
 
-            for (let i = 0; i < temp.length; i++) {
-                if (temp[i] === null) {
-                    continue;
-                }
-                for (let j = 0; j < countries.length; j++) {
-                    if (temp[i] === countries[j]) {
-                        a = j + ':\'' + countries[j] + '\'; ';
-                    }
-                }
-                sum += a;
-            }
-            console.log(sum.slice(0,-2));
-        };
+        <div class="row justify-content-center">
 
-    </script>
+            <div class="col-xl-9" style="border: solid 1px red;">
 
+                <ul>
 
+                    @foreach($forums as $forum)
+
+                        <li>
+
+                            <a href="{{ url_with_locale('/forum/id=' . $forum->id) }}"><h5>{{ $forum->name }}</h5></a>
+
+                        </li>
+
+                    @endforeach
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
 
 @endsection

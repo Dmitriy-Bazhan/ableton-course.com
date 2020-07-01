@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Events;
+
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
 
-class MessageSend implements ShouldBroadcast
+class ChatMessageSend implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
@@ -16,8 +19,9 @@ class MessageSend implements ShouldBroadcast
     {
         $this->message = $message;
     }
+
     public function broadcastOn()
     {
-        return new Channel('chatbox');
+        return new Channel('channel');
     }
 }

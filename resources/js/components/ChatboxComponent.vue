@@ -74,6 +74,7 @@
             this.addMessage(' ');
             Echo.channel('chatbox')
                 .listen('MessageSend', (e) => {
+                    // console.log(e);
                     this.addMessage(e.message);
                 });
         },
@@ -89,6 +90,7 @@
                 $('#block_comments').after(putVar);
             },
             sendMessage() {
+                // console.log(this.textMessage);
                 axios.post('/api/message', {message: this.textMessage});
                 this.textMessage = '';
             },

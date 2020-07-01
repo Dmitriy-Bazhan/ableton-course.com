@@ -16,7 +16,7 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-        <div class="col-9">
+        <div class="col-8">
 
             <ul class="navbar-nav">
 
@@ -50,6 +50,13 @@
 
                 <li class="nav-item">
 
+                    <a class="nav-link @if($page_name == 'chat') disabled @endif"
+                       href=" {{ route('chat') }} ">@lang('site.header.chat')</a>
+
+                </li>
+
+                <li class="nav-item">
+
                     <a class="nav-link @if($page_name == 'about_us') disabled @endif"
                        href=" {{ route('about_us') }} ">@lang('site.header.about_us')</a>
 
@@ -59,9 +66,15 @@
 
         </div>
 
-        <div class="col-2">
+        <div class="col-3">
 
             <ul class="navbar-nav">
+
+                @if(session('message_for_banned_users') == 1)
+
+                    <a class="nav-link disabled" style="color:#940000">@lang('site.header.you_banned')</a>
+
+                    @endif
 
                 @guest
 

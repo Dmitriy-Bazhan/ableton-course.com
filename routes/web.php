@@ -4,25 +4,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAccess;
 
-Route::post('/api/message', 'ChatController@index');
+Route::post('/api/message', 'ChatController@index')->middleware(['checkBan']);
+Route::post('/chat/message', 'Site\ChatController@message')->middleware(['checkBan']);
 
 Route::group([
     'prefix' => get_prefix(),
+    'middleware' => ['checkBan'],
 ],
     function () {
         Route::get('/', 'Site\HomepageController@index');
-        Route::get('/about_us', 'Site\PageController@about_us')->name('about_us');
-        Route::get('/contacts', 'Site\PageController@contacts')->name('contacts');
-
-        Route::get('/blog', 'Site\PageController@blog')->name('blog');
-
-        Route::get('/forum', 'Forum\ForumController@index')->name('forum');
 
         Route::get('/lesson/{lessonId?}', 'Lesson\LessonController@index')->name('lesson');
         Route::post('/user_start_video', 'Lesson\LessonController@userStartVideo');
         Route::post('/lesson_push_like_ajax', 'Lesson\LessonController@lessonPushLikeAjax');
         Route::post('/lesson_push_dislike_ajax', 'Lesson\LessonController@lessonPushDislikeAjax');
         Route::post('/lesson_add_to_favorites', 'Lesson\LessonController@lessonAddToFavorites');
+
+        Route::get('/forum', 'Forum\ForumController@index')->name('forum');
+
+        Route::get('/blog', 'Site\PageController@blog')->name('blog');
+
+        Route::get('/contacts', 'Site\PageController@contacts')->name('contacts');
+
+        Route::get('/chat', 'Site\ChatController@chat')->name('chat');
+
+        Route::get('/about_us', 'Site\PageController@about_us')->name('about_us');
 
         Route::get('/user_profile', 'Site\ProfileController@index')->name('user_profile');
     });

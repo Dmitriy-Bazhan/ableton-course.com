@@ -87,12 +87,21 @@ class DatabaseSeeder extends Seeder
                 $lesson_data->meta_keywords = $lang . '_' . 'meta_keywords_' . $alias;
                 $lesson_data->short_description = $lang . '_' . 'short_description_' . $alias;
                 $lesson_data->description = $description[$lang];
-//                $lesson_data->video = $lang . '_' . $alias . '_video';
                 $lesson_data->text = $lang . '_' . $alias . '_text';
                 $lesson_data->save();
             }
         }
 
-
+        $aliases = ['first', 'second', 'third'];
+        foreach ($aliases as $alias) {
+            $topic = new \App\Forum();
+            $topic->alias = $alias;
+            $topic->lang = 'en';
+            $topic->name = strtoupper($alias);
+            $topic->description = $alias . '_' . $alias . '_' . $alias;
+            $topic->author = 1;
+            $topic->tags = json_encode($languages);
+            $topic->save();
+        }
     }
 }

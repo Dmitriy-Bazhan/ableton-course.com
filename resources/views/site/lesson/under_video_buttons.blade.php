@@ -1,4 +1,4 @@
-@if(Auth::user())
+@if(Auth::check())
 
     <button class="button_copy_link" id="pushLike"
             data-user-push="{{ $userPushLike }}"

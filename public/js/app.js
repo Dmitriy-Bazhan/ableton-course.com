@@ -1979,6 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
     var date = new Date();
     this.addMessage(' ');
     Echo.channel('chatbox').listen('MessageSend', function (e) {
+      // console.log(e);
       _this.addMessage(e.message);
     });
   },
@@ -1990,6 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#block_comments').after(putVar);
     },
     sendMessage: function sendMessage() {
+      // console.log(this.textMessage);
       axios.post('/api/message', {
         message: this.textMessage
       });
@@ -56641,8 +56643,8 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "bb007d975c94158288cc",
-  cluster: "eu",
-  encrypted: true
+  cluster: "eu" // encrypted: true
+
 });
 
 /***/ }),
@@ -56821,8 +56823,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\Users\Admin\Downloads\OSPanel\domains\ableton-course.com\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\Users\Admin\Downloads\OSPanel\domains\ableton-course.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Zver\Downloads\OSPanel\domains\ableton-course.com\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

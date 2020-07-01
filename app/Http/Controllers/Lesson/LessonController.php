@@ -11,6 +11,7 @@ use App\UserData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Object_;
 
 class LessonController extends Controller
 {
@@ -31,10 +32,12 @@ class LessonController extends Controller
         }
 
         $data = array_merge($data, $this->usefulVars($lessonId));
-
         $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
         $data['categories'] = Category::categories();
         $data['comments'] = Lesson_comment::comments($lessonId);
+
+
+
         session()->put('currentLesson', $data['currentLesson']->id);
 
         return view('site.lesson.index', $data);
@@ -52,7 +55,7 @@ class LessonController extends Controller
     public function lessonPushLikeAjax(Request $request)
     {
         $lessonId = $request->post('id');
-        $push = $request->post('push');
+        $push = Auth::check() ? $request->post('push') : 2;
         $lang = app()->getLocale();
         $userId = Auth::id();
         $user_data = UserData::where('user_id', $userId)->select('push_like')->first();
@@ -94,7 +97,7 @@ class LessonController extends Controller
     public function lessonPushDislikeAjax(Request $request)
     {
         $lessonId = $request->post('id');
-        $push = $request->post('push');
+        $push = Auth::check() ? $request->post('push') : 2;
         $lang = app()->getLocale();
         $userId = Auth::id();
         $user_data = UserData::where('user_id', $userId)->select('push_dislike')->first();
@@ -136,7 +139,7 @@ class LessonController extends Controller
     public function lessonAddToFavorites(Request $request)
     {
         $lessonId = $request->post('id');
-        $push = $request->post('push');
+        $push = Auth::check() ? $request->post('push') : 2;
         $lang = app()->getLocale();
         $userId = Auth::id();
         $user_data = UserData::where('user_id', $userId)->select('favorites')->first();
@@ -176,10 +179,11 @@ class LessonController extends Controller
         $userData = null;
         if (Auth::check()) {
             $userData = UserData::where('user_id', Auth::id())->select('push_like', 'push_dislike', 'favorites')->first();
+            $data['userPushLike'] = $this->userPushLike($lessonId, $userData);
+            $data['userPushDislike'] = $this->userPushDislike($lessonId, $userData);
+            $data['userAddFavorites'] = $this->userAddFavorites($lessonId, $userData);
         }
-        $data['userPushLike'] = $this->userPushLike($lessonId, $userData);
-        $data['userPushDislike'] = $this->userPushDislike($lessonId, $userData);
-        $data['userAddFavorites'] = $this->userAddFavorites($lessonId, $userData);
+
         return $data;
     }
 
@@ -230,4 +234,5 @@ class LessonController extends Controller
         }
         return $userAddFavorites;
     }
+
 }
