@@ -10,6 +10,8 @@
 
             <div class="col-lg-10">
 
+                <h3>Категории</h3>
+
                 @include('admin.add_button')
 
                 <table class="table table-dark">
@@ -41,8 +43,10 @@
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
                             <td>
-                                <a href="{{ url('admin/category/' . $category->id . '/edit' ) }}"><button title="Редактировать" class="badge badge-pill badge-primary"><span
-                                            class="oi oi-pencil"></span></button></a>
+                                <a href="{{ url('admin/category/' . $category->id . '/edit' ) }}">
+                                    <button title="Редактировать" class="badge badge-pill badge-primary"><span
+                                            class="oi oi-pencil"></span></button>
+                                </a>
 
                                 @if($category->enabled)
 

@@ -8,13 +8,6 @@
 
         <div class="col-8">
 
-            <a href="#">
-
-                <img class="popular_img" src="{{ asset('img/faces/Serj1.jpg') }}">
-                <img class="popular_img" src="{{ asset('img/faces/Dima2.jpg') }}">
-                <img class="popular_img" src="{{ asset('img/faces/Serj2.jpg') }}">
-                <img class="popular_img" src="{{ asset('img/faces/Dima1.jpg') }}">
-            </a>
 
         </div>
 

@@ -8,9 +8,11 @@
 
             @include('admin.left_aside_menu')
 
-            <p>ABOUT_US</p>
+            <div class="col-lg-4">
 
-            <p>ABOUT_US</p>
+                <h3>ПРО НАС</h3>
+
+            </div>
 
         </div>
 

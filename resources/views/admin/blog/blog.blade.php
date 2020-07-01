@@ -8,9 +8,11 @@
 
             @include('admin.left_aside_menu')
 
-            <p>BLOG</p>
+            <div class="col-lg-4">
 
-            <p>BLOG</p>
+                <h3>БЛОГ</h3>
+
+            </div>
 
         </div>
 

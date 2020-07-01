@@ -23,6 +23,8 @@ return [
 
     'chat' => [
         'name_page' => 'Chat',
+        'send_your_message' => 'Enter your message: ',
+        'declaration' => 'Only registered users can write comments.',
     ],
 
     'about_us' => [

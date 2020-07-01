@@ -23,22 +23,32 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-9">
+            @if(Auth()->check())
 
-                <form class="form">
+                <div class="col-9">
 
-                    <input id="input_message" class="textarea_in_chat" type="text" placeholder="Text"
-                           name="chat_message">
+                    <form class="form">
 
-                    <br>
-                    <br>
+                        <h4>@lang('site.chat.send_your_message')</h4>
 
-                    <input class="send_message_in_chat" type="submit" value="Send" id="send_chat_message"
-                           data-token="{{ csrf_token() }}">
+                        <input id="input_message" class="textarea_in_chat" type="text"
+                               name="chat_message">
 
-                </form>
+                        <br>
+                        <br>
 
-            </div>
+                        <input class="send_message_in_chat" type="submit" value="Send" id="send_chat_message"
+                               data-token="{{ csrf_token() }}">
+
+                    </form>
+
+                </div>
+
+            @else
+
+                <h6>@lang('site.chat.declaration')</h6>
+
+            @endif
 
         </div>
 
@@ -56,7 +66,7 @@
 
                     <div class="col-9">
 
-                        <h4 id="start">Start :</h4>
+                        <h4 id="start"></h4>
 
 
                         @foreach($comments as $comment)

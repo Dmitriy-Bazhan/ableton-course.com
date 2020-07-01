@@ -10,6 +10,8 @@
 
             <div class="col-lg-10">
 
+                <h3>Уроки</h3>
+
                 @include('admin.add_button')
 
                 <table class="table table-dark">

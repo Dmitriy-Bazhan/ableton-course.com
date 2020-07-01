@@ -1,24 +1,29 @@
+(function(){
+  $('.list_lessons').hide();
+}());
+
+
+(function () {
+    var array = document.cookie.split(";");
+    for (let i = 0; i < array.length + 1; i++) {
+        var div = '#list_lessons_' + i;
+        var cook = getCookie(i);
+        if (cook == 'show') {
+            $(div).show();
+            $(div).attr('data-view', 'show');
+        }
+        if (cook == 'hide') {
+            $(div).hide();
+            $(div).attr('data-view', 'hide');
+        }
+    }
+}());
+
 (function () {
     var current_lesson = $('#aside_menu').attr('data-current-lesson');
     var current_div = 'div[data-current-lesson-show = ' + current_lesson + ']';
     $(current_div).show();
     $(current_div).attr('data-view', 'show');
-}());
-
-(function () {
-    var array = document.cookie.split(";");
-    array.sort();
-    for (let i = 0; i < array.length; i++) {
-        var div = '#list_lessons_' + i;
-        if (array[i] == ' ' + i + '=show') {
-            $(div).show();
-            $(div).attr('data-view', 'show');
-        }
-        if (array[i] == ' ' + i + '=hide') {
-            $(div).hide();
-            $(div).attr('data-view', 'hide');
-        }
-    }
 }());
 
 $('#category_list').on('click', '#category_list_category', function () {
@@ -60,6 +65,24 @@ jQuery(document).ready(function ($) {
     });
 });
 
-
+function getCookie(name) {
+    var cookie = " " + document.cookie;
+    var search = " " + name + "=";
+    var setStr = null;
+    var offset = 0;
+    var end = 0;
+    if (cookie.length > 0) {
+        offset = cookie.indexOf(search);
+        if (offset != -1) {
+            offset += search.length;
+            end = cookie.indexOf(";", offset)
+            if (end == -1) {
+                end = cookie.length;
+            }
+            setStr = unescape(cookie.substring(offset, end));
+        }
+    }
+    return(setStr);
+}
 
 

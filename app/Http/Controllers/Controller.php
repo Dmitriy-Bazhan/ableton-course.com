@@ -35,6 +35,7 @@ class Controller extends BaseController
             'contacts' => 'Контакты',
             'about_us' => 'О нас',
             'users' => 'Пользователи',
+            'chat' => 'Чат',
         ];
         $this->data['page_name'] = 'admin';
     }

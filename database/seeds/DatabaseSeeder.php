@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
         $userdata->user_id = 1;
         $userdata->save();
 
-        $names = ['first_category', 'second_category', 'third_category',
-            'forth_category', 'fifth_category'];
+        $names = ['First category', 'Second category', 'Third category',
+            'Forth category', 'Fifth category'];
 
         foreach ($names as $key => $name) {
             $category = new \App\Category();
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
                 $category_data = new \App\Category_data();
                 $category_data->category_id = $id;
                 $category_data->lang = $lang;
-                $category_data->name = $name . 'name_in_' . $lang;
+                $category_data->name = $name . ' on ' . strtoupper($lang);
                 $category_data->description = $lang . '_' . 'description_' . $name;
                 $category_data->save();
             }
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
         foreach ($languages as $lang) {
             $description[$lang] = '';
             for ($i = 0; $i < 15; $i++) {
-                $description[$lang] = $description[$lang] . $lang . '_description ';
+                $description[$lang] = 'This a description on ' . strtoupper($lang) . ' language. I dont have free time and no desire to fill him myself..))';
             }
         }
 
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 $lesson_data->lesson_id = $id;
                 $lesson_data->category_id = $categoryId;
                 $lesson_data->lang = $lang;
-                $lesson_data->name = $lang . '_Lesson_N_' . $id;
+                $lesson_data->name = $id . ' Lesson on ' . strtoupper($lang) . ' language';
                 $lesson_data->meta_title = $lang . '_' . 'meta_title_' . $alias;
                 $lesson_data->meta_description = $lang . '_' . 'meta_description_' . $alias;
                 $lesson_data->meta_keywords = $lang . '_' . 'meta_keywords_' . $alias;

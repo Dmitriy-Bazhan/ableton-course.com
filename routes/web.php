@@ -53,6 +53,8 @@ Route::group([
         Route::resource('/about_us', 'Admin\About_usController');
 
         Route::resource('/users', 'Admin\UsersController');
+
+        Route::resource('/chat', 'Admin\ChatController');
     });
 
 //Авторизация и регистрация

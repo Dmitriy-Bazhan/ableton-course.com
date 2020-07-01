@@ -8,9 +8,11 @@
 
             @include('admin.left_aside_menu')
 
-            <p>CONTACTS</p>
+            <div class="col-lg-4">
 
-            <p>CONTACTS</p>
+                <h3>КОНТАКТЫ</h3>
+
+            </div>
 
         </div>
 
