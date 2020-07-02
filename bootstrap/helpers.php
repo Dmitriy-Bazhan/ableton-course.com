@@ -195,12 +195,9 @@ if (!function_exists('isSiteAvailible')) {
 
     function isSiteAvailible($url)
     {
-
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             return false;
         }
-
-
 
         $curlInit = curl_init($url);
 
