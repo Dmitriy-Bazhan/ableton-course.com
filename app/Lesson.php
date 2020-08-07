@@ -77,7 +77,9 @@ class Lesson extends Model
     {
         return self::where('category_id', $categoryId)
             ->where('id', '<>', $lessonId)
-            ->where('enabled', true)->with('data')->inRandomOrder()->take(3)->get();
+            ->where('enabled', true)
+            ->with('data')
+            ->inRandomOrder()->take(3)->get();
     }
 
 

@@ -65,9 +65,7 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $goodRang->increment('good_rang');
-
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->increment('good_rang');
         } elseif ($push == 1) {
 
             $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
@@ -83,8 +81,7 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $goodRang->decrement('good_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->decrement('good_rang');
         }
 
         $data = $this->usefulVars($lessonId);
@@ -107,8 +104,7 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $badRang->increment('bad_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->increment('bad_rang');
 
         } elseif ($push == 1) {
 
@@ -125,8 +121,7 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $badRang->decrement('bad_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->decrement('bad_rang');
         }
 
         $data = $this->usefulVars($lessonId);

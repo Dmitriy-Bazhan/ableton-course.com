@@ -1,7 +1,5 @@
 Echo.channel('channel')
     .listen('ChatMessageSend', function(e) {
-        console.log(e.message);
-        console.log(e);
         let date = new Date();
         let timestamp = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         var html = '<div class="message">' +
@@ -27,7 +25,7 @@ $('#send_chat_message').click(function(event){
             message: data,
         },
         success: function (data) {
-            console.log('success');
+            console.log('Message written');
         },
         error: function (errorThrown) {
             console.log(errorThrown);

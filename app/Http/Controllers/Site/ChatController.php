@@ -17,7 +17,6 @@ class ChatController extends Controller
         $data['comments'] = Chat::latest()->take(100)->get();
 
 //        dd($request);
-
         return view('site.chat.index', $data);
 
     }
@@ -25,7 +24,7 @@ class ChatController extends Controller
 
     public function message(Request $request)
     {
-        $message = $request->input('message', '');
+        $message = clearVar($request->input('message', ''));
 
         if (strlen($message)) {
             $comment = new Chat();
