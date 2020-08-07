@@ -47,7 +47,7 @@ class LessonController extends Controller
     public function userStartVideo(Request $request)
     {
         $lessonId = $request->post('id');
-        Lesson_data::where('id', $lessonId)->where('lang', app()->getLocale())->increment('views');
+        Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->increment('views');
         return response()->json([], 200);
     }
 

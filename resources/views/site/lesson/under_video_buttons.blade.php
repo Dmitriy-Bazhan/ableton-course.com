@@ -1,9 +1,9 @@
 <div class="row">
 
-    <div class="col-6">
+    <div class="col-9">
         @if(Auth::check())
 
-            <button style="margin-left: 5%;" class="button_copy_link" id="pushLike"
+            <button style="margin-left: 10%;" class="button_copy_link" id="pushLike"
                     data-user-push="{{ $userPushLike }}"
                     data-id="{{$currentLesson->id}}"
                     data-token="{{ csrf_token() }}"
@@ -57,7 +57,7 @@
 
     </div>
 
-    <div class="col-6">
+    <div class="col-3">
 
         @php($langLink = app()->getLocale() != 'en' ? app()->getLocale() . '/' : '')
 
@@ -65,7 +65,7 @@
                 class="btn-primary button_copy_link">@lang('site.lesson.copy_link')
         </button>
 
-        <span id="copy_body" style="color:blue;">{{'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}</span>
+        <input type="hidden" value="{{'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}" id="copy_body">
 
     </div>
 

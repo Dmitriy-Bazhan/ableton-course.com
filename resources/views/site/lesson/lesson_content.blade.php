@@ -17,13 +17,13 @@
             </div>
 
             <script>
-                (function(){
-                    $('iframe').height($('iframe').width()/1.6);
+                (function () {
+                    $('iframe').height($('iframe').width() / 1.6);
                     $('#aside_menu').height($('iframe').height());
                     $('#under_video_buttom').width($('iframe').width());
 
-                    $(window).resize(function(){
-                        $('iframe').height($('iframe').width()/1.6);
+                    $(window).resize(function () {
+                        $('iframe').height($('iframe').width() / 1.6);
                         $('#aside_menu').height($('iframe').height());
                         $('#under_video_buttom').width($('iframe').width());
                     });
@@ -42,6 +42,23 @@
             </div>
 
         @endif
+
+        <div id="under_video_buttom">
+
+            @include('site.lesson.under_video_buttons')
+
+            <script>
+                (function () {
+                    $('#under_video_buttom').width($('iframe').width());
+
+                    $(window).resize(function () {
+                        $('#under_video_buttom').width($('iframe').width());
+                    });
+                }());
+            </script>
+
+        </div>
+
 
     </div>
 
@@ -76,21 +93,6 @@
 
 <br>
 
-<div id="under_video_buttom">
-
-    @include('site.lesson.under_video_buttons')
-
-    <script>
-        (function(){
-            $('#under_video_buttom').width($('iframe').width());
-
-            $(window).resize(function(){
-                $('#under_video_buttom').width($('iframe').width());
-            });
-        }());
-    </script>
-
-</div>
 
 <br>
 
