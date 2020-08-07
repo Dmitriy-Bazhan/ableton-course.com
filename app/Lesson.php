@@ -70,17 +70,7 @@ class Lesson extends Model
 
     public static function currentLesson($lessonId)
     {
-        return self::where('id', $lessonId)->with('data')->first();
+        return self::where('id', $lessonId)->where('enabled', 1)->with('data')->first();
     }
-
-    public static function similarLessons($lessonId, $categoryId)
-    {
-        return self::where('category_id', $categoryId)
-            ->where('id', '<>', $lessonId)
-            ->where('enabled', true)
-            ->with('data')
-            ->inRandomOrder()->take(3)->get();
-    }
-
 
 }

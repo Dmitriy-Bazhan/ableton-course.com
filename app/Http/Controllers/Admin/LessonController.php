@@ -165,4 +165,21 @@ class LessonController extends Controller
         //
     }
 
+    public function enabledChange(Request $request)
+    {
+        $id = $request->post('id');
+        $enabled = Lesson::where('id', $id)->select('enabled')->first();
+
+        if($enabled->enabled == 1)
+        {
+            Lesson::where('id', $id)->update(['enabled' => 0]);
+        }
+        if($enabled->enabled == 0)
+        {
+            Lesson::where('id', $id)->update(['enabled' => 1]);
+        }
+
+
+        return response()->json([], 200);
+    }
 }

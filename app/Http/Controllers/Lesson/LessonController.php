@@ -20,7 +20,7 @@ class LessonController extends Controller
         $data = self::necessarily();
         $data['page_name'] = 'lesson';
 
-        if (isset($_GET['id']) && !empty($_GET['id']) && Lesson::find($_GET['id'])) {
+        if (isset($_GET['id']) && !empty($_GET['id']) && Lesson::where('id', $_GET['id'])->select('id')->first()) {
             $lessonId = $_GET['id'];
             if (Auth::check()) {
                 User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
@@ -31,12 +31,20 @@ class LessonController extends Controller
             $lessonId = Lesson::orderBy('id')->select('id')->firstOrFail()->id;
         }
 
-        $data = array_merge($data, $this->usefulVars($lessonId));
-        $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
         $data['categories'] = Category::categories();
+        foreach ($data['categories'] as $key => $category) {
+            $arrayOfKeys = $category->lesson->KeyBy('id')->keys()->toArray();
+            if (in_array($lessonId, $arrayOfKeys)) {
+                $data['currentLesson'] = value($data['categories'][$key]->lesson->where('id', $lessonId)->first());
+                $data['similarLessons'] = $data['categories'][$key]->lesson->where('id','<>' ,$lessonId)->take(3);
+                break;
+            }
+
+
+        }
+//        dd($data['currentLesson']->id);
+        $data = array_merge($data, $this->usefulVars($lessonId, false));
         $data['comments'] = Lesson_comment::comments($lessonId);
-
-
 
         session()->put('currentLesson', $data['currentLesson']->id);
 
@@ -168,9 +176,11 @@ class LessonController extends Controller
         ], 200);
     }
 
-    private function usefulVars($lessonId): array
+    private function usefulVars($lessonId, $whitCurrentLesson = true): array
     {
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        if ($whitCurrentLesson) {
+            $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        }
         $userData = null;
         if (Auth::check()) {
             $userData = UserData::where('user_id', Auth::id())->select('push_like', 'push_dislike', 'favorites')->first();
