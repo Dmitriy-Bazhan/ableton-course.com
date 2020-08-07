@@ -19,7 +19,7 @@ class LessonController extends Controller
         $data = self::necessarily();
         $data['page_name'] = 'lesson';
 
-        if (isset($_GET['id']) && !empty($_GET['id']) && Lesson::find($_GET['id'])) {
+        if (isset($_GET['id']) && !empty($_GET['id']) && Lesson::where('id', $_GET['id'])->select('id')->first()) {
             $lessonId = $_GET['id'];
             if (Auth::check()) {
                 User::where('id', Auth::id())->update(['last_lesson' => $lessonId]);
@@ -30,12 +30,20 @@ class LessonController extends Controller
             $lessonId = Lesson::orderBy('id')->select('id')->firstOrFail()->id;
         }
 
-        $data = array_merge($data, $this->usefulVars($lessonId));
-        $data['similarLessons'] = Lesson::similarLessons($data['currentLesson']->id, $data['currentLesson']->category_id);
         $data['categories'] = Category::categories();
+        foreach ($data['categories'] as $key => $category) {
+            $arrayOfKeys = $category->lesson->KeyBy('id')->keys()->toArray();
+            if (in_array($lessonId, $arrayOfKeys)) {
+                $data['currentLesson'] = value($data['categories'][$key]->lesson->where('id', $lessonId)->first());
+                $data['similarLessons'] = $data['categories'][$key]->lesson->where('id','<>' ,$lessonId)->take(3);
+                break;
+            }
+
+
+        }
+//        dd($data['currentLesson']->id);
+        $data = array_merge($data, $this->usefulVars($lessonId, false));
         $data['comments'] = Lesson_comment::comments($lessonId);
-
-
 
         session()->put('currentLesson', $data['currentLesson']->id);
 
@@ -46,7 +54,7 @@ class LessonController extends Controller
     public function userStartVideo(Request $request)
     {
         $lessonId = $request->post('id');
-        Lesson_data::where('id', $lessonId)->where('lang', app()->getLocale())->increment('views');
+        Lesson_data::where('lesson_id', $lessonId)->where('lang', app()->getLocale())->increment('views');
         return response()->json([], 200);
     }
 
@@ -64,9 +72,7 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $goodRang->increment('good_rang');
-
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->increment('good_rang');
         } elseif ($push == 1) {
 
             $temp = isset($user_data->push_like) ? json_decode($user_data->push_like, true) : null;
@@ -82,8 +88,7 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_like' => json_encode($temp)]);
-            $goodRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $goodRang->decrement('good_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->decrement('good_rang');
         }
 
         $data = $this->usefulVars($lessonId);
@@ -106,8 +111,7 @@ class LessonController extends Controller
             $string = isset($temp[$lang]) ? $temp[$lang] : '';
             $temp[$lang] = !empty($string) ? $string . ',' . $lessonId : $lessonId;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $badRang->increment('bad_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->increment('bad_rang');
 
         } elseif ($push == 1) {
 
@@ -124,8 +128,7 @@ class LessonController extends Controller
 
             $temp[$lang] = $string;
             UserData::where('user_id', $userId)->update(['push_dislike' => json_encode($temp)]);
-            $badRang = Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->first();
-            $badRang->decrement('bad_rang');
+            Lesson_data::where('lesson_id', $lessonId)->where('lang', $lang)->decrement('bad_rang');
         }
 
         $data = $this->usefulVars($lessonId);
@@ -172,9 +175,11 @@ class LessonController extends Controller
         ], 200);
     }
 
-    private function usefulVars($lessonId): array
+    private function usefulVars($lessonId, $whitCurrentLesson = true): array
     {
-        $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        if ($whitCurrentLesson) {
+            $data['currentLesson'] = Lesson::currentLesson($lessonId);
+        }
         $userData = null;
         if (Auth::check()) {
             $userData = UserData::where('user_id', Auth::id())->select('push_like', 'push_dislike', 'favorites')->first();

@@ -44,7 +44,7 @@
                             <td>
                                 @foreach($categories as $category)
                                     @if($category->id == $lesson->category_id)
-                                            {{ $category->data->name }}
+                                        {{ $category->data->name }}
                                     @endif
                                 @endforeach
                             </td>
@@ -59,12 +59,16 @@
 
                                 @if($lesson->enabled)
 
-                                    <button title="Отключить" class="badge badge-pill badge-primary" id="enable-button">
+                                    <button title="Отключить" class="badge badge-pill badge-primary enable-button"
+                                            data-id="{{ $lesson->id }}" data-enabled="enabled"
+                                            data-token="{{ csrf_token() }}">
                                         <span class="oi oi-power-standby"></span></button>
                                 @else
 
-                                    <button title="Включить" class="badge badge-pill badge-secondary"
-                                            id="enable-button"><span class="oi oi-power-standby"></span></button>
+                                    <button title="Включить" class="badge badge-pill badge-secondary enable-button"
+                                            data-id="{{ $lesson->id }}" data-enabled="not_enabled"
+                                            data-token="{{ csrf_token() }}">
+                                        <span class="oi oi-power-standby"></span></button>
                                 @endif
 
                             </td>
@@ -89,5 +93,45 @@
         </div>
 
     </div>
+
+    <script>
+        $('.enable-button').on('click', function () {
+            var lessonId = $(this).data('id');
+            var element = $(this);
+
+            $.ajax({
+                method: 'post',
+                url: '/lessons_enabled',
+                dataType: 'json',
+                data: {
+                    _token: $(this).data('token'),
+                    id: lessonId,
+                },
+                success: function () {
+                    if(element.data('enabled') == 'enabled')
+                    {
+                        element.removeClass('badge-primary');
+                        element.addClass('badge-secondary');
+                        element.attr('data-enabled','not_enabled').data('enabled','not_enabled');
+                        console.log('Disabled');
+                        return;
+                    }
+                    if(element.data('enabled') == 'not_enabled')
+                    {
+                        element.removeClass('badge-secondary');
+                        element.addClass('badge-primary');
+                        element.attr('data-enabled','enabled').data('enabled','enabled');
+                        console.log('Enabled');
+                        return;
+                    }
+                },
+                error: function (errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+
+        });
+
+    </script>
 
 @endsection

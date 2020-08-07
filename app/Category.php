@@ -20,14 +20,9 @@ class Category extends Model
 
     public function lesson()
     {
-        return $this->hasMany('App\Lesson', 'category_id', 'id');
+        return $this->hasMany('App\Lesson', 'category_id', 'id')->where('enabled', 1);
     }
 
-    public function lesson_data()
-    {
-        return $this->hasMany('App\Lesson_data', 'category_id', 'id')
-            ->where('lang', app()->getLocale());
-    }
 
     public static function storeOrUpdate($post, $categoryId = null)
     {
@@ -61,6 +56,6 @@ class Category extends Model
 
     public static function categories()
     {
-        return self::with('data')->with('lesson')->with('lesson_data')->get();
+        return self::with('data')->with('lesson.data')->get();
     }
 }

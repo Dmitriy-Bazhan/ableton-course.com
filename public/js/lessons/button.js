@@ -1,7 +1,7 @@
 function copyLink(element) {
     var $temp = $("<input>");
     $("body").append($temp);
-    $temp.val($(element).html()).select();
+    $temp.val($(element).val()).select();
     document.execCommand("copy");
     $temp.remove();
 }

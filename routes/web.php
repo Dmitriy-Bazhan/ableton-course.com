@@ -57,6 +57,9 @@ Route::group([
         Route::resource('/chat', 'Admin\ChatController');
     });
 
+Route::post('/lessons_enabled', 'Admin\LessonController@enabledChange');
+
+
 //Авторизация и регистрация
 Route::get('/social-auth/{provider}', 'Auth\SocialController@redirectToProvider')->name('auth.social');
 Route::get('/social-auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback')->name('auth.social.callback');

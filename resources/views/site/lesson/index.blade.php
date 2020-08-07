@@ -56,7 +56,7 @@
 
                                                    style="color:#afdbf5">
                                                     <i class="fas fa-book-open"></i>
-                                                    {{ $category->lesson_data[$key]->name }}
+                                                    {{ $category->lesson[$key]->data->name }}
                                                 </a>
 
                                             @else
@@ -68,7 +68,7 @@
 
                                                    style="color:#f5d3b3">
                                                     <i class="fas fa-book-open"></i>
-                                                    {{ $category->lesson_data[$key]->name }}
+                                                    {{ $category->lesson[$key]->data->name }}
                                                 </a>
 
                                             @endif

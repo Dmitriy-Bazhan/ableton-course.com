@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark shadow-sm head fixed-top" style="background-color: #6d6a80;">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm head fixed-top" style="background-color: #6d6a80;">
 
     <a class="navbar-brand" @if($page_name != '/') href="{{ url_with_locale('/') }}" @endif>
 
@@ -8,7 +8,7 @@
 
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
@@ -16,9 +16,9 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-        <div class="col-8">
+        <div class="col-7">
 
-            <ul class="navbar-nav">
+            <ul class="nav navbar-nav">
 
                 <li class="nav-item">
 
@@ -68,7 +68,7 @@
 
         <div class="col-3">
 
-            <ul class="navbar-nav">
+            <ul class="nav navbar-nav">
 
                 @if(session('message_for_banned_users') == 1)
 
@@ -126,9 +126,9 @@
 
         </div>
 
-        <div class="col-1">
+        <div class="col-2">
 
-            <ul class="navbar-nav">
+            <ul class="nav navbar-nav">
 
                 @if($page_name != 'admin')
 
@@ -148,9 +148,7 @@
 
                             <li class="nav-item">
 
-                                @php($prefix = $lang == 'en' ? '' : '/'. $lang)
-
-                                <a class="nav-link" href=" {{ url( $prefix . $path) }} ">{{ strtoupper($lang) }}</a>
+                                <a class="nav-link" href=" {{ url( ($lang == 'en' ? '' : '/'. $lang) . $path) }} ">{{ strtoupper($lang) }}</a>
 
                             </li>
 
@@ -165,5 +163,11 @@
         </div>
 
     </div>
+
+    <script>
+        $('.navbar-toggler').click(function(){
+            $('#collapsibleNavbar').toggle();
+        });
+    </script>
 
 </nav>

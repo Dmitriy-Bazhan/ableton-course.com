@@ -52,7 +52,7 @@ jQuery(document).ready(function ($) {
                 dataType: 'json',
                 data: {
                     _token: $('.video_player').data('token'),
-                    id: $('.video_player').data('id'),
+                    id: $('.video_player').data('id')
                 },
                 success: function () {
                     console.log('Him pushing');

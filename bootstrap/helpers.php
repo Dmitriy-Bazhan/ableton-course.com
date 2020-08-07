@@ -213,3 +213,18 @@ if (!function_exists('isSiteAvailible')) {
         return $response ? true : false;
     }
 }
+
+if (!function_exists('clearVar')) {
+
+    function clearVar($value)
+    {
+        $value = str_replace('/', '', $value);
+//        $value = str_replace('\\', '', $value);
+        $value = stripslashes($value);
+        $value = strip_tags($value);
+        $value = htmlspecialchars($value);
+        $value = htmlentities($value);
+        $value = trim($value);
+        return $value;
+    }
+}
