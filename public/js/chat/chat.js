@@ -1,5 +1,5 @@
 Echo.channel('channel')
-    .listen('ChatMessageSend', (e) => {
+    .listen('ChatMessageSend', function(e) {
         console.log(e.message);
         console.log(e);
         let date = new Date();
@@ -11,8 +11,6 @@ Echo.channel('channel')
             '</div><br></div>';
         $('#start').after(html);
     });
-
-var socketId = Echo.socketId();
 
 $('#send_chat_message').click(function(event){
     event.preventDefault();

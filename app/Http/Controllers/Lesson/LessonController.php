@@ -183,7 +183,6 @@ class LessonController extends Controller
             $data['userPushDislike'] = $this->userPushDislike($lessonId, $userData);
             $data['userAddFavorites'] = $this->userAddFavorites($lessonId, $userData);
         }
-
         return $data;
     }
 
