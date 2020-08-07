@@ -16,20 +16,7 @@ class ChatController extends Controller
         $data['page_name'] = 'chat';
         $data['comments'] = Chat::latest()->take(100)->get();
 
-<<<<<<< HEAD
-
-        $connect = new \PDO('mysql:dbname=onlineschool;host=127.0.0.1','root','');
-        $result = $connect->prepare('SELECT * FROM lessons JOIN lesson_datas ON
-                                     lessons.id = lesson_datas.lesson_id WHERE lesson_datas.lang = \'en\'');
-        $result->execute();
-
-
-        dd($result->fetchAll(\PDO::FETCH_ASSOC));
-=======
-//        dd($request);
->>>>>>> e4e0ec76876d06a12883ba5a15e8d6be70be2903
         return view('site.chat.index', $data);
-
     }
 
 
