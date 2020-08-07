@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    public function chat()
+    public function chat(Request $request)
     {
         $data = self::necessarily();
         $data['page_name'] = 'chat';
         $data['comments'] = Chat::latest()->take(100)->get();
+
+//        dd($request);
 
         return view('site.chat.index', $data);
 
