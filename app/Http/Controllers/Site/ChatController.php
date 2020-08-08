@@ -17,7 +17,6 @@ class ChatController extends Controller
         $data['comments'] = Chat::latest()->take(100)->get();
 
         return view('site.chat.index', $data);
-
     }
 
 
