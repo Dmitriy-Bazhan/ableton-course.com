@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     //Onload video on page and control dimensions of video block and under video buttons
     (function () {
-        $('.video_player').load('js/lessons/lesson_video_player.html', function(){
+        $('.video_player').load('html/lessons/lesson_video_player.html', function(){
             var src = $('.video_player').data('src');
             $('iframe').attr('src', src);
         });
@@ -63,6 +63,10 @@ $(document).ready(function () {
                 // Views counter
                 $('#video_lesson_div').iframeTracker({
                     blurCallback: function () {
+                        var check;
+                        if(check == 1){
+                            return;
+                        }
                         $.ajax({
                             method: 'post',
                             url: 'user_start_video',
@@ -72,6 +76,7 @@ $(document).ready(function () {
                                 id: $('.video_player').data('id')
                             },
                             success: function () {
+                                check = 1;
                                 console.log('Views increment :)');
                             },
                             error: function (errorThrown) {

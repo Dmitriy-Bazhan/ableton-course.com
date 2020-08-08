@@ -2,6 +2,7 @@
 
 @section('content')
 
+    <link href="{{ asset('css/lessons.css') }}" rel="stylesheet">
     <script src="{{ asset('js/iframeTracker-jquery-master/src/jquery.iframetracker.js') }}" type="text/javascript" defer></script>
 
     <div class="container-fluid">
@@ -51,7 +52,6 @@
                                                     $('#list_lessons_{{ $list_key }}')
                                                         .attr('data-current-lesson-show', {{ $currentLesson->category_id }} );
                                                 </script>
-
 
                                                 <a class="nav-link choose_your_lesson"
                                                    data-id="{{ $lesson->id }}"

@@ -109,12 +109,12 @@
         color: wheat;
         border-radius: 15px;
         border: solid 1px black;
-        box-shadow: 10px 10px black;
+        box-shadow: 7px 7px black;
     }
 
     .message_button:hover {
         color: lightgreen;
-        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.8);
+        box-shadow: 4px 4px black;
     }
 
     .message_button:focus {

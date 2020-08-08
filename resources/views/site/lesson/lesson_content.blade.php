@@ -49,7 +49,7 @@
 
         <h3>@lang('site.lesson.description')</h3>
 
-        <p class="new_span">{{ $currentLesson->data->description }}</p>
+        <p class="lesson_description">{{ $currentLesson->data->description }}</p>
 
         <hr>
 

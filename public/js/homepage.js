@@ -15,9 +15,11 @@ $(document).ready(function () {
     });
 
     $('.homepage_link').hover(function () {
-        $(this).css({'opacity': '0.5'});
+        let coord = $(this).offset();
+        $(this).offset({top:coord.top + 8, left:coord.left + 8});
     }, function () {
-        $(this).css({'opacity': '1'});
+        let coord = $(this).offset();
+        $(this).offset({top:coord.top - 8, left:coord.left - 8});
     });
 
 });

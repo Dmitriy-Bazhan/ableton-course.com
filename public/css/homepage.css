@@ -22,9 +22,13 @@
     color: wheat;
 }
 
-.homepage_link{
+.homepage_link {
+    background: #373539;
     overflow: hidden;
     border:solid 1px black;
     border-radius: 40px;
     box-shadow: 10px 10px black;
+}
+.homepage_link:hover {
+    box-shadow: 2px 2px black;
 }
