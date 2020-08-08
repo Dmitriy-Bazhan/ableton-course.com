@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <script src="{{ asset('js/iframeTracker-jquery-master/src/jquery.iframetracker.js') }}" type="text/javascript" defer></script>
+
     <div class="container-fluid">
 
         <div class="row">
@@ -38,6 +40,7 @@
                             <div id="list_lessons_{{ $list_key }}" class="list_lessons" data-view="hide">
 
                                 <ul>
+
                                     @foreach($category->lesson as $key => $lesson)
 
                                         <li>
@@ -80,7 +83,6 @@
                                 </ul>
 
                             </div>
-
 
                         </li>
 

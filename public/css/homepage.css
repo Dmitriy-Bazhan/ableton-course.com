@@ -1,0 +1,30 @@
+.new_img {
+    width: 35%;
+    float: left;
+    margin: 10px;
+    border-radius: 30px;
+}
+
+.popular_img {
+    width: 28%;
+    float: left;
+    margin: 10px;
+    border-radius: 30px;
+}
+
+.new_span {
+    font-size: 16pt;
+    color: wheat;
+}
+
+.popular_span {
+    font-size: 14pt;
+    color: wheat;
+}
+
+.homepage_link{
+    overflow: hidden;
+    border:solid 1px black;
+    border-radius: 40px;
+    box-shadow: 10px 10px black;
+}

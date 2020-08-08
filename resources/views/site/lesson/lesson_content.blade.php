@@ -1,3 +1,5 @@
+
+
 <h3 id="up">{{ $currentLesson->data->name }}</h3>
 
 <div class="row">
@@ -6,29 +8,10 @@
 
         @if(isset($currentLesson->data->video) && !is_null($currentLesson->data->video))
 
-            <div class="video_player" data-token="{{ csrf_token() }}" data-id="{{ $currentLesson->id }}">
-
-                <iframe width="100%" id="video_lesson_div"
-                        src="{{ str_replace('watch?v=','embed/',$currentLesson->data->video) }}"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+            <div class="video_player" data-token="{{ csrf_token() }}" data-id="{{ $currentLesson->id }}"
+                 data-src="{{ str_replace('watch?v=','embed/',$currentLesson->data->video) }}">
 
             </div>
-
-            <script>
-                (function () {
-                    $('iframe').height($('iframe').width() / 1.6);
-                    $('#aside_menu').height($('iframe').height());
-                    $('#under_video_buttom').width($('iframe').width());
-
-                    $(window).resize(function () {
-                        $('iframe').height($('iframe').width() / 1.6);
-                        $('#aside_menu').height($('iframe').height());
-                        $('#under_video_buttom').width($('iframe').width());
-                    });
-                }());
-            </script>
 
         @else
 
@@ -92,14 +75,9 @@
 </div>
 
 <br>
-
-
 <br>
 
 @if(Auth::check())
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 
     <div id="app">
         <chatbox-component comments='@json($comments)'></chatbox-component>
@@ -142,10 +120,6 @@
 
 <a href="#up" class="button_copy_link" style="margin-left: 75%;"><span class="oi oi-data-transfer-upload"></span></a>
 
-{{--<script>--}}
-{{--    var block = document.getElementById('block_comments');--}}
-{{--    block.scrollTop = block.scrollHeight;--}}
-{{--</script>--}}
 
 
 

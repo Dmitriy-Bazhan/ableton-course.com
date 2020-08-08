@@ -12,7 +12,7 @@ class ChatController extends Controller
     public function index(Request $request)
     {
 
-        $message = $request->input('message', '');
+        $message = clearVar($request->input('message', ''));
 
         if (strlen($message)) {
             $comment = new Lesson_comment();

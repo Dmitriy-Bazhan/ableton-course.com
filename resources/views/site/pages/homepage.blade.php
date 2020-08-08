@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <link href="{{asset('css/homepage.css')}}" rel="stylesheet">
+
     <div class="row justify-content-center">
 
         <img class="homepage_title_logo" src=" {{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
@@ -24,66 +26,41 @@
 
     <hr>
 
-    <div class="row">
+    <div class="row justify-content-center" style="width: 97%; margin-left: 1.5%">
 
-        <div class="col-4">
+        @foreach($lastItems as $item)
 
-            <a href="#">
+            <div class="col-md-4" style="padding: 10px;">
 
-            <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
+                <a data-href="{{ url_with_locale('/lesson?id=' . $item->id) }}" disabled="">
 
-            <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
-                sit
-                amet
-                nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                malesuada,
-                eget
-                vehicula velit tincidunt. Morbi eget lacus velit. </span>
+                    <div class="homepage_link new_item">
 
-            </a>
+                        @if(isset($item->image_small) && file_exists('storage/image_small/' . $item->image_small))
 
-        </div>
+                            <img class="new_img" src="{{ asset('storage/image_small/' . $item->image_small) }}">
 
-        <div class="col-4">
+                        @else
 
-            <a href="#">
+                            <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
 
-                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
+                        @endif
 
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
-                sit
-                amet
-                nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                malesuada,
-                eget
-                vehicula velit tincidunt. </span>
+                        <p class="new_span">{{ $item->data->name }}</p>
 
-            </a>
+                        <p class="new_span">{{ $item->data->description }}</p>
 
-        </div>
+                    </div>
 
-        <div class="col-4">
+                </a>
 
-            <a href="#">
+            </div>
 
-                <img class="new_img" src="{{ asset('img/ava/icons8-electronic-music-100-1.png') }}">
-
-                <span class="new_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum aliquam elementum et
-                sit
-                amet
-                nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                malesuada,
-                eget
-                vehicula velit tincidunt. Morbi eget lacus velit. </span>
-
-            </a>
-
-        </div>
+        @endforeach
 
     </div>
 
     <hr>
-
 
     <div class="row justify-content-center">
 
@@ -93,61 +70,41 @@
 
     <hr>
 
-    <div class="row">
+    <div class="row justify-content-center" style="width: 97%; margin-left: 1.5%">
 
-        <div class="col-4">
+        @foreach($popularLessons as $lesson)
 
-            <a href="#">
+            <div class="col-md-4" style="padding: 10px;">
 
-                <img class="popular_img" src="{{ asset('img/Ableton_Live_Suite10-1.jpg') }}">
+                <a data-href="{{ url_with_locale('/lesson?id=' . $lesson->lesson->id) }}">
 
-                <p class="popular_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum
-                    aliquam elementum et sit
-                    amet
-                    nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                    malesuada,
-                    eget
-                    vehicula velit tincidunt. </p>
+                    <div class="homepage_link popular_lessons">
 
-            </a>
+                        @if(isset($lesson->lesson->image_small) && file_exists('storage/image_small/' . $lesson->lesson->image_small))
 
-        </div>
+                            <img class="popular_img"
+                                 src="{{ asset('storage/image_small/' . $lesson->lesson->image_small) }}">
 
-        <div class="col-4">
+                        @else
 
-            <a href="#">
+                            <img class="popular_img" src="{{ asset('img/Ableton_Live_Suite10-1.jpg') }}">
 
-                <img class="popular_img" src="{{ asset('img/1.jpg') }}">
+                        @endif
 
-                <p class="popular_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum
-                    aliquam elementum et sit
-                    amet
-                    nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                    malesuada,
-                    eget
-                    vehicula velit tincidunt. </p>
+                        <p class="popular_span">{{ $lesson->name }}</p>
 
-            </a>
+                        <p class="popular_span">{{ $lesson->description }}</p>
 
-        </div>
+                    </div>
 
-        <div class="col-4">
+                </a>
 
-            <a href="#">
+            </div>
 
-                <img class="popular_img" src="{{ asset('img/Ableton_Live_Suite10-1.jpg') }}">
-
-                <p class="popular_span">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id ante id ipsum
-                    aliquam elementum et sit
-                    amet
-                    nunc. Nulla sed tellus ac eros tincidunt interdum sed ut ligula. Cras convallis dolor non eros
-                    malesuada,
-                    eget
-                    vehicula velit tincidunt. </p>
-
-            </a>
-
-        </div>
+        @endforeach
 
     </div>
+
+    <script src="{{ asset('js/homepage.js') }}" type="text/javascript" defer></script>
+
 @endsection

@@ -27,16 +27,6 @@ h3, h4, h5, h6 {
 }
 
 
-.new_img {
-    width: 30%;
-    float: left;
-    margin: 10px;
-}
-
-.new_span {
-    font-size: 16pt;
-    color: wheat;
-}
 
 .micro_logo {
     width: 50px;
@@ -44,18 +34,6 @@ h3, h4, h5, h6 {
 
 .homepage_title_logo {
     width: 15%;
-}
-
-.popular_img {
-    width: 20%;
-    float: left;
-    margin: 10px;
-
-}
-
-.popular_span {
-    font-size: 14pt;
-    color: wheat;
 }
 
 .header_site_name {
@@ -301,4 +279,6 @@ h3, h4, h5, h6 {
     border: solid 1px black;
     box-shadow: 10px 10px black;
 }
+
+
 

@@ -62,6 +62,7 @@
         @php($langLink = app()->getLocale() != 'en' ? app()->getLocale() . '/' : '')
 
         <button onclick="copyLink('#copy_body')"
+                title="{{'http://ableton-course.com/'. $langLink . 'lesson?id=' . $currentLesson->id }}"
                 class="btn-primary button_copy_link">@lang('site.lesson.copy_link')
         </button>
 

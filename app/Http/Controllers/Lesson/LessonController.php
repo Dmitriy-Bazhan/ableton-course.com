@@ -11,7 +11,6 @@ use App\UserData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Object_;
 
 class LessonController extends Controller
 {
@@ -40,9 +39,7 @@ class LessonController extends Controller
                 break;
             }
 
-
         }
-//        dd($data['currentLesson']->id);
         $data = array_merge($data, $this->usefulVars($lessonId, false));
         $data['comments'] = Lesson_comment::comments($lessonId);
 
@@ -176,9 +173,10 @@ class LessonController extends Controller
         ], 200);
     }
 
-    private function usefulVars($lessonId, $whitCurrentLesson = true): array
+    private function usefulVars($lessonId, $withCurrentLesson = true)
     {
-        if ($whitCurrentLesson) {
+        $data = [];
+        if ($withCurrentLesson) {
             $data['currentLesson'] = Lesson::currentLesson($lessonId);
         }
         $userData = null;

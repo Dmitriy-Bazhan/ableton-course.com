@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Lesson;
+use App\Lesson_data;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,8 +25,10 @@ class HomepageController extends Controller
             session()->forget('message_for_banned_users');
         }
 
-        $this->data = self::necessarily();
-        $this->data['page_name'] = '/';
-        return view('site.pages.homepage', $this->data);
+        $data = self::necessarily();
+        $data['lastItems'] = Lesson::where('enabled', 1)->latest()->take(3)->with('data')->get();
+        $data['popularLessons'] = Lesson_data::orderByDesc('views')->where('lang', app()->getLocale())->take(3)->with('lesson')->get();
+        $data['page_name'] = '/';
+        return view('site.pages.homepage', $data);
     }
 }
