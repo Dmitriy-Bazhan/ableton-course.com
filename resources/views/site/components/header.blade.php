@@ -8,7 +8,8 @@
 
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
@@ -16,7 +17,7 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-        <div class="col-7">
+        <div class="col-md-6">
 
             <ul class="nav navbar-nav">
 
@@ -66,7 +67,7 @@
 
         </div>
 
-        <div class="col-3">
+        <div class="col-md-4">
 
             <ul class="nav navbar-nav">
 
@@ -74,7 +75,7 @@
 
                     <a class="nav-link disabled" style="color:#940000">@lang('site.header.you_banned')</a>
 
-                    @endif
+                @endif
 
                 @guest
 
@@ -95,6 +96,16 @@
                     @endif
 
                 @else
+
+                    <li class="nav-item">
+
+                        @if(Auth::user()->role == 2 or Auth::user()->role == 4)
+
+                            <a class="nav-link" href=" {{ route('admin') }} ">Admin page</a>
+
+                        @endif
+
+                    </li>
 
                     <li class="nav-item">
 
@@ -126,7 +137,7 @@
 
         </div>
 
-        <div class="col-2">
+        <div class="col-md-2">
 
             <ul class="nav navbar-nav">
 
@@ -148,7 +159,8 @@
 
                             <li class="nav-item">
 
-                                <a class="nav-link" href=" {{ url( ($lang == 'en' ? '' : '/'. $lang) . $path) }} ">{{ strtoupper($lang) }}</a>
+                                <a class="nav-link"
+                                   href=" {{ url( ($lang == 'en' ? '' : '/'. $lang) . $path) }} ">{{ strtoupper($lang) }}</a>
 
                             </li>
 
@@ -165,7 +177,7 @@
     </div>
 
     <script>
-        $('.navbar-toggler').click(function(){
+        $('.navbar-toggler').click(function () {
             $('#collapsibleNavbar').toggle();
         });
     </script>

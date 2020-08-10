@@ -1,23 +1,23 @@
 $(document).ready(function () {
 
-    function copyLink(element) {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($(element).val()).select();
-        document.execCommand("copy");
-        $temp.remove();
-    }
+    $('.lesson_button').hover(function () {
+        let coord = $(this).offset();
+        $(this).offset({top: coord.top + 2, left: coord.left +2});
+    }, function () {
+        let coord = $(this).offset();
+        $(this).offset({top: coord.top - 2, left: coord.left - 2});
+    });
 
     $('.button_copy_link').hover(function () {
         let coord = $(this).offset();
-        $(this).offset({top: coord.top + 3, left: coord.left + 3});
+        $(this).offset({top: coord.top + 2, left: coord.left + 2});
     }, function () {
         let coord = $(this).offset();
-        $(this).offset({top: coord.top - 3, left: coord.left - 3});
+        $(this).offset({top: coord.top - 2, left: coord.left - 2});
     });
 
-    $('#pushLike').click(function () {
 
+    $('#pushLike').click(function () {
         $.ajax({
             method: 'post',
             url: 'lesson_push_like_ajax',
@@ -78,4 +78,20 @@ $(document).ready(function () {
     });
 
 });
+
+(function () {
+    $('#under_video_buttom').width($('iframe').width());
+
+    $(window).resize(function () {
+        $('#under_video_buttom').width($('iframe').width());
+    });
+}());
+
+function copyLink(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).val()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
 

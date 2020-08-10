@@ -3,7 +3,8 @@
 @section('content')
 
     <link href="{{ asset('css/lessons.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/iframeTracker-jquery-master/src/jquery.iframetracker.js') }}" type="text/javascript" defer></script>
+    <script src="{{ asset('js/iframeTracker-jquery-master/src/jquery.iframetracker.js') }}" type="text/javascript"
+            defer></script>
 
     <div class="container-fluid">
 
@@ -32,49 +33,54 @@
 
                         <li class="nav-item">
 
-                            <a class="nav-link" style="color:#f5d3b3" id="category_list_category"
-                               data-list="{{ $list_key }}">
-                                <i class="fas fa-calculator"></i>
-                                {{ $category->data->name }}
-                            </a>
+                            <div class="lessons_aside_menu_category_name">
+
+                                <a class="nav-link" style="color:#f5d3b3" id="category_list_category"
+                                   data-list="{{ $list_key }}"><span>&nbsp;</span>
+                                    {{ $category->data->name }}
+                                </a>
+
+                            </div>
 
                             <div id="list_lessons_{{ $list_key }}" class="list_lessons" data-view="hide">
 
-                                <ul>
+                                <ul style="list-style-type:none;">
 
                                     @foreach($category->lesson as $key => $lesson)
 
                                         <li>
 
-                                            @if($lesson->id == $currentLesson->id)
+                                            <div class="lessons_aside_menu_lesson_name">
 
-                                                <script>
-                                                    $('#list_lessons_{{ $list_key }}')
-                                                        .attr('data-current-lesson-show', {{ $currentLesson->category_id }} );
-                                                </script>
+                                                @if($lesson->id == $currentLesson->id)
 
-                                                <a class="nav-link choose_your_lesson"
-                                                   data-id="{{ $lesson->id }}"
-                                                   data-token="{{ csrf_token() }}"
+                                                    <script>
+                                                        $('#list_lessons_{{ $list_key }}')
+                                                            .attr('data-current-lesson-show', {{ $currentLesson->category_id }} );
+                                                    </script>
 
-                                                   style="color:#afdbf5">
-                                                    <i class="fas fa-book-open"></i>
-                                                    {{ $category->lesson[$key]->data->name }}
-                                                </a>
+                                                    <a class="nav-link choose_your_lesson"
+                                                       data-id="{{ $lesson->id }}"
+                                                       data-token="{{ csrf_token() }}"
+                                                       style="color:#afdbf5">
+                                                       <span>&nbsp;</span>
+                                                       {{ $category->lesson[$key]->data->name }}
+                                                    </a>
 
-                                            @else
+                                                @else
 
-                                                <a class="nav-link choose_your_lesson"
-                                                   href=" {{ url_with_locale('/lesson?id=' . $lesson->id) }}"
-                                                   data-id="{{ $lesson->id }}"
-                                                   data-token="{{ csrf_token() }}"
+                                                    <a class="nav-link choose_your_lesson"
+                                                       href=" {{ url_with_locale('/lesson?id=' . $lesson->id) }}"
+                                                       data-id="{{ $lesson->id }}"
+                                                       data-token="{{ csrf_token() }}"
+                                                       style="color:#f5d3b3">
+                                                       <span>&nbsp;</span>
+                                                       {{ $category->lesson[$key]->data->name }}
+                                                    </a>
 
-                                                   style="color:#f5d3b3">
-                                                    <i class="fas fa-book-open"></i>
-                                                    {{ $category->lesson[$key]->data->name }}
-                                                </a>
+                                                @endif
 
-                                            @endif
+                                            </div>
 
                                         </li>
 

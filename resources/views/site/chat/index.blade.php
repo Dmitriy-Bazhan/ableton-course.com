@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <link href="{{ asset('css/chat.css') }}" rel="stylesheet">
 
     <div class="container-fluid">
 
@@ -68,7 +67,6 @@
 
                         <h4 id="start"></h4>
 
-
                         @foreach($comments as $comment)
 
                             <div class="message">
@@ -81,8 +79,13 @@
 
                                 <div class="message_div1">
 
-                <span
-                    class="span_message_vue"> {!! $comment['comment'] !!}</span>
+                                    <span class="span_message_vue"> {!! $comment['comment'] !!}</span>
+
+                                </div>
+
+                                <div data-id="{{ $comment['user_id'] }}" class="warning_in_chat">
+
+                                    <span class="oi oi-warning"></span>
 
                                 </div>
 
@@ -97,7 +100,6 @@
                 </div>
 
             </div>
-
 
             <script src="{{ asset('js/chat/chat.js') }}"></script>
 

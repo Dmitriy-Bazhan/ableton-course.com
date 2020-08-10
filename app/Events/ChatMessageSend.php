@@ -14,10 +14,12 @@ class ChatMessageSend implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $message;
+    public $id;
 
-    public function __construct($message)
+    public function __construct($message, $id)
     {
         $this->message = $message;
+        $this->id = $id;
     }
 
     public function broadcastOn()

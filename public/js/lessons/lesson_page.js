@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     //Onload video on page and control dimensions of video block and under video buttons
     (function () {
-        $('.video_player').load('html/lessons/lesson_video_player.html', function(){
+        $('.video_player').load('../html/lessons/lesson_video_player.html', function(){
             var src = $('.video_player').data('src');
             $('iframe').attr('src', src);
         });

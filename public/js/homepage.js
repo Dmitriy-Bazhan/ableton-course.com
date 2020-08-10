@@ -16,10 +16,10 @@ $(document).ready(function () {
 
     $('.homepage_link').hover(function () {
         let coord = $(this).offset();
-        $(this).offset({top:coord.top + 8, left:coord.left + 8});
+        $(this).offset({top:coord.top + 2, left:coord.left + 2});
     }, function () {
         let coord = $(this).offset();
-        $(this).offset({top:coord.top - 8, left:coord.left - 8});
+        $(this).offset({top:coord.top - 2, left:coord.left - 2});
     });
 
 });

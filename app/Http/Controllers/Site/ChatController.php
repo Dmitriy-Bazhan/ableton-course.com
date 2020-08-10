@@ -28,13 +28,14 @@ class ChatController extends Controller
             $comment = new Chat();
             $comment->user_id = Auth::id();
 
-            $user = \App\User::find($comment->user_id)->name;
+            $user = Auth::user()->name;
+            $id = Auth::user()->id;
             $message = '<span class="username_message"> ' . $user . ': </span> ' . $message;
 
             $comment->comment = $message;
             $comment->save();
 
-            event(new ChatMessageSend($message));
+            event(new ChatMessageSend($message, $id));
         }
     }
 }

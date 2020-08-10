@@ -38,7 +38,7 @@ Route::group([
     'middleware' => ['auth', 'checkAccess']
 ],
     function () {
-        Route::get('/', 'Admin\AdminController@index');
+        Route::get('/', 'Admin\AdminController@index')->name('admin');
 
         Route::resource('/lessons', 'Admin\LessonController');
 

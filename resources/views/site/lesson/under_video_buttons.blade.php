@@ -3,7 +3,7 @@
     <div class="col-9">
         @if(Auth::check())
 
-            <button style="margin-left: 10%;" class="button_copy_link" id="pushLike"
+            <button style="margin-left: 10%;" class="lesson_button" id="pushLike"
                     data-user-push="{{ $userPushLike }}"
                     data-id="{{$currentLesson->id}}"
                     data-token="{{ csrf_token() }}"
@@ -12,7 +12,7 @@
         </span>&nbsp; {{ $currentLesson->data->good_rang }}
             </button>
 
-            <button class="button_copy_link" id="pushDislike"
+            <button class="lesson_button" id="pushDislike"
                     data-id="{{$currentLesson->id}}"
                     data-user-push="{{ $userPushDislike }}"
                     data-token="{{ csrf_token() }}"
@@ -21,11 +21,7 @@
                 <span class="oi oi-thumb-down"></span>&nbsp; {{ $currentLesson->data->bad_rang }}
             </button>
 
-            <button class="button_copy_link" disabled title="@lang('site.lesson.views')"><span
-                    class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
-            </button>
-
-            <button class="button_copy_link" id="add_to_favorites"
+            <button class="lesson_button" id="add_to_favorites"
                     data-id="{{$currentLesson->id}}"
                     data-user-push="{{ $userAddFavorites }}"
                     data-token="{{ csrf_token() }}"
@@ -34,23 +30,27 @@
                 <span class="oi oi-pin"></span>
             </button>
 
-        @else
-            <h6>@lang('site.lesson.declaration')</h6>
+            <button class="lesson_button_view" disabled title="@lang('site.lesson.views')"><span
+                    class="oi oi-eye"></span> &nbsp; {{ $currentLesson->data->views }}
+            </button>
 
-            <button style="margin-left: 5%;" class="button_copy_link" disabled title="@lang('site.lesson.push_like')">
+        @else
+            <h6 style="color:red;">@lang('site.lesson.declaration')</h6>
+
+            <button style="margin-left: 5%;" class="lesson_button" disabled title="@lang('site.lesson.push_like')">
                 <span class="oi oi-thumb-up"></span>&nbsp; {{ $currentLesson->data->good_rang }}
             </button>
 
-            <button class="button_copy_link" disabled title="@lang('site.lesson.push_dislike')">
+            <button class="lesson_button" disabled title="@lang('site.lesson.push_dislike')">
                 <span class="oi oi-thumb-down"></span>&nbsp; {{ $currentLesson->data->bad_rang }}
             </button>
 
-            <button class="button_copy_link" disabled title="@lang('site.lesson.views')"><span
-                    class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
+            <button class="lesson_button" disabled title="@lang('site.lesson.favorite')">
+                <span class="oi oi-pin"></span>
             </button>
 
-            <button class="button_copy_link" disabled title="@lang('site.lesson.favorite')">
-                <span class="oi oi-pin"></span>
+            <button class="lesson_button_view" disabled title="@lang('site.lesson.views')"><span
+                    class="oi oi-eye"></span>&nbsp; {{ $currentLesson->data->views }}
             </button>
 
         @endif

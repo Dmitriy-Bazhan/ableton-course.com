@@ -116,6 +116,7 @@ h3, h4, h5, h6 {
     background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
     background-image: linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 }
+
 .button_copy_link:focus {
     outline: 0;
 }
@@ -195,9 +196,9 @@ h3, h4, h5, h6 {
 
 .message_div1 {
     width: 100%;
-    /*border: solid 2px #6d6a80;*/
+    border: solid 2px #6d6a80;
     padding: 15px;
-    /*border-radius: 30px;*/
+    border-radius: 30px;
     /*background: #6d6a80;*/
 }
 

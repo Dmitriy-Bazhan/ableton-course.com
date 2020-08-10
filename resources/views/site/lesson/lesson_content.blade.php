@@ -1,5 +1,3 @@
-
-
 <h3 id="up">{{ $currentLesson->data->name }}</h3>
 
 <div class="row">
@@ -30,18 +28,7 @@
 
             @include('site.lesson.under_video_buttons')
 
-            <script>
-                (function () {
-                    $('#under_video_buttom').width($('iframe').width());
-
-                    $(window).resize(function () {
-                        $('#under_video_buttom').width($('iframe').width());
-                    });
-                }());
-            </script>
-
         </div>
-
 
     </div>
 
@@ -61,8 +48,12 @@
 
                 <li class="nav-item">
 
-                    <a class="nav-link" href=" {{ url_with_locale('/lesson?id=' . $similarLesson->id) }}"
-                       style="color:#1a8b7a;">{{ $similarLesson->data->name }}</a>
+                    <div class="similar_lesson">
+
+                        <a class="nav-link" href=" {{ url_with_locale('/lesson?id=' . $similarLesson->id) }}"
+                           style="color:#1a8b7a;">&nbsp; {{ $similarLesson->data->name }}</a>
+
+                    </div>
 
                 </li>
 
